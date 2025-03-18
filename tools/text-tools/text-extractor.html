@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Extractor - Extract Information from Text | MultiTools</title>
+    <meta name="description" content="Free online text extractor. Extract emails, URLs, phone numbers, dates, and more from text with advanced pattern matching and filtering options.">
+    <meta name="keywords" content="text extractor, email extractor, URL extractor, phone number extractor, date extractor, pattern matching">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text Extractor - Extract Information from Text">
+    <meta property="og:description" content="Free online text extractor. Extract emails, URLs, phone numbers, dates, and more from text with advanced pattern matching and filtering options.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-extractor.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+    <style>
+        .extraction-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .extraction-option {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .extraction-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .extraction-option.active {
+            border-color: #0d6efd;
+            background: #f8f9fa;
+        }
+        .extraction-option i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0d6efd;
+        }
+        .extraction-option h6 {
+            margin: 0;
+            color: #212529;
+        }
+        .extraction-option p {
+            margin: 0.5rem 0 0;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .extraction-results {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #dee2e6;
+            transition: background-color 0.2s;
+        }
+        .result-item:hover {
+            background-color: #fff;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-value {
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .result-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .result-action-btn {
+            background: none;
+            border: none;
+            color: #0d6efd;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .result-action-btn:hover {
+            color: #0a58ca;
+        }
+        .extraction-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-option input {
+            margin: 0;
+        }
+        .filter-option label {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text Extractor</h1>
+                    <p class="lead mb-4">Extract emails, URLs, phone numbers, dates, and more from text with advanced pattern matching and filtering options.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Text Input -->
+                            <div class="text-input-area mb-4">
+                                <textarea id="inputText" class="form-control" placeholder="Enter text to extract information from..."></textarea>
+                            </div>
+
+                            <!-- Extraction Options -->
+                            <div class="extraction-options">
+                                <div class="extraction-option active" data-type="email">
+                                    <i class="fas fa-envelope"></i>
+                                    <h6>Email Addresses</h6>
+                                    <p>Extract email addresses</p>
+                                </div>
+                                <div class="extraction-option" data-type="url">
+                                    <i class="fas fa-link"></i>
+                                    <h6>URLs</h6>
+                                    <p>Extract web links</p>
+                                </div>
+                                <div class="extraction-option" data-type="phone">
+                                    <i class="fas fa-phone"></i>
+                                    <h6>Phone Numbers</h6>
+                                    <p>Extract phone numbers</p>
+                                </div>
+                                <div class="extraction-option" data-type="date">
+                                    <i class="fas fa-calendar"></i>
+                                    <h6>Dates</h6>
+                                    <p>Extract dates</p>
+                                </div>
+                                <div class="extraction-option" data-type="ip">
+                                    <i class="fas fa-network-wired"></i>
+                                    <h6>IP Addresses</h6>
+                                    <p>Extract IP addresses</p>
+                                </div>
+                                <div class="extraction-option" data-type="hashtag">
+                                    <i class="fas fa-hashtag"></i>
+                                    <h6>Hashtags</h6>
+                                    <p>Extract hashtags</p>
+                                </div>
+                            </div>
+
+                            <!-- Filter Options -->
+                            <div class="filter-options">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="caseSensitive" class="form-check-input">
+                                    <label for="caseSensitive">Case Sensitive</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="uniqueOnly" class="form-check-input" checked>
+                                    <label for="uniqueOnly">Unique Only</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="sortResults" class="form-check-input" checked>
+                                    <label for="sortResults">Sort Results</label>
+                                </div>
+                            </div>
+
+                            <!-- Extraction Stats -->
+                            <div class="extraction-stats">
+                                <span>Found: <span id="resultCount">0</span> items</span>
+                                <span>Processing time: <span id="processingTime">0</span> ms</span>
+                            </div>
+
+                            <!-- Extraction Results -->
+                            <div class="extraction-results" id="extractionResults"></div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="extractBtn">
+                                    <i class="fas fa-search me-2"></i>Extract
+                                </button>
+                                <button class="btn btn-outline-secondary" id="clearBtn">
+                                    <i class="fas fa-trash me-2"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text Extractor</h5>
+                            <p class="card-text">
+                                Our Text Extractor tool helps you:
+                            </p>
+                            <ul>
+                                <li>Extract emails, URLs, and phone numbers</li>
+                                <li>Find dates and IP addresses</li>
+                                <li>Identify hashtags and mentions</li>
+                                <li>Filter and sort results</li>
+                                <li>Copy extracted items</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for data mining, content analysis, and information gathering.
+                                The tool uses advanced pattern matching to find specific types of information in text.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-case-converter.html">
+                                    <i class="fas fa-text-height me-2"></i>Text Case Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-formatter.html">
+                                    <i class="fas fa-align-left me-2"></i>Text Formatter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-encoder.html">
+                                    <i class="fas fa-code me-2"></i>Text Encoder
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputText = document.getElementById('inputText');
+            const extractionOptions = document.querySelectorAll('.extraction-option');
+            const extractionResults = document.getElementById('extractionResults');
+            const resultCount = document.getElementById('resultCount');
+            const processingTime = document.getElementById('processingTime');
+            const extractBtn = document.getElementById('extractBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const caseSensitive = document.getElementById('caseSensitive');
+            const uniqueOnly = document.getElementById('uniqueOnly');
+            const sortResults = document.getElementById('sortResults');
+
+            // Regular expressions for different types of content
+            const patterns = {
+                email: /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+                url: /(https?:\/\/[^\s]+)/g,
+                phone: /(?:\+\d{1,3}[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}/g,
+                date: /(?:\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{4}[-/]\d{1,2}[-/]\d{1,2})/g,
+                ip: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g,
+                hashtag: /#[a-zA-Z0-9_]+/g
+            };
+
+            // Toggle extraction option
+            extractionOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    option.classList.toggle('active');
+                });
+            });
+
+            // Extract content based on selected options
+            function extractContent() {
+                const text = inputText.value;
+                if (!text) return [];
+
+                const startTime = performance.now();
+                const results = [];
+                const flags = caseSensitive.checked ? 'g' : 'gi';
+
+                // Get active extraction options
+                const activeOptions = Array.from(extractionOptions)
+                    .filter(option => option.classList.contains('active'))
+                    .map(option => option.dataset.type);
+
+                // Extract content for each active option
+                activeOptions.forEach(type => {
+                    const pattern = new RegExp(patterns[type], flags);
+                    const matches = text.match(pattern) || [];
+                    results.push(...matches.map(match => ({
+                        type,
+                        value: match
+                    })));
+                });
+
+                // Process results
+                let processedResults = results;
+                if (uniqueOnly.checked) {
+                    processedResults = Array.from(new Set(results.map(r => r.value)))
+                        .map(value => results.find(r => r.value === value));
+                }
+                if (sortResults.checked) {
+                    processedResults.sort((a, b) => a.value.localeCompare(b.value));
+                }
+
+                const endTime = performance.now();
+                processingTime.textContent = Math.round(endTime - startTime);
+                resultCount.textContent = processedResults.length;
+
+                return processedResults;
+            }
+
+            // Display results
+            function displayResults(results) {
+                extractionResults.innerHTML = results.map(result => `
+                    <div class="result-item">
+                        <span class="result-value">${result.value}</span>
+                        <div class="result-actions">
+                            <button class="result-action-btn" onclick="copyToClipboard('${result.value}')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Copy text to clipboard
+            window.copyToClipboard = function(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = event.currentTarget;
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                });
+            };
+
+            // Extract button click
+            extractBtn.addEventListener('click', () => {
+                const results = extractContent();
+                displayResults(results);
+            });
+
+            // Clear button click
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                extractionResults.innerHTML = '';
+                resultCount.textContent = '0';
+                processingTime.textContent = '0';
+            });
+
+            // Initialize
+            displayResults([]);
+        });
+    </script>
+</body>
+</html> 

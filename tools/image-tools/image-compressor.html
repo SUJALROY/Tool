@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - Compress Images Online | MultiTools</title>
+    <meta name="description" content="Free online image compressor. Compress your images while maintaining quality. Fast, easy to use, and no registration required.">
+    <meta name="keywords" content="image compressor, compress image, image optimization, reduce image size, online compressor, free compressor">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image Compressor - Compress Images Online">
+    <meta property="og:description" content="Free online image compressor. Compress your images while maintaining quality. Fast, easy to use, and no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/image-tools/image-compressor.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="image-tool-container p-4">
+                    <h1 class="mb-4">Image Compressor</h1>
+                    <p class="lead mb-4">Compress your images while maintaining quality. Fast, free, and easy to use.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageInput" class="form-label">Select Image:</label>
+                                <div class="image-upload-container">
+                                    <input type="file" class="form-control" id="imageInput" accept="image/*">
+                                    <div class="image-preview-container mt-3 d-none" id="imagePreviewContainer">
+                                        <img id="imagePreview" class="img-fluid rounded" alt="Preview">
+                                        <div class="image-info mt-2">
+                                            <small class="text-muted">Size: <span id="imageSize">0 KB</span></small>
+                                            <small class="text-muted ms-3">Dimensions: <span id="imageDimensions">0 x 0</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="qualitySlider" class="form-label">Compression Quality: <span id="qualityValue">80%</span></label>
+                                <input type="range" class="form-range" id="qualitySlider" min="1" max="100" value="80">
+                                <div class="form-text">Higher quality means larger file size. Lower quality means smaller file size.</div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary" id="compressBtn" disabled>
+                                        <i class="fas fa-compress-alt me-2"></i>Compress Image
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn" disabled>
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="result-card mb-4 d-none" id="resultCard">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Compressed Image</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="image-preview-container">
+                                    <img id="compressedImage" class="img-fluid rounded" alt="Compressed Preview">
+                                    <div class="image-info mt-2">
+                                        <small class="text-muted">Size: <span id="compressedSize">0 KB</span></small>
+                                        <small class="text-muted ms-3">Dimensions: <span id="compressedDimensions">0 x 0</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-success" id="downloadBtn">
+                                    <i class="fas fa-download me-2"></i>Download Image
+                                </button>
+                                <div class="text-muted">
+                                    <small>Compression: <span id="compressionRatio">0%</span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Image Compressor</h5>
+                            <p class="card-text">
+                                Our Image Compressor allows you to:
+                            </p>
+                            <ul>
+                                <li>Compress images while maintaining quality</li>
+                                <li>Adjust compression level with quality slider</li>
+                                <li>Preview before and after compression</li>
+                                <li>Download compressed image instantly</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for web developers, designers, and anyone needing to optimize images.
+                                The tool provides high-quality compression with customizable settings.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/image-tools/image-to-base64.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Image to Base64
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-resizer.html">
+                                    <i class="fas fa-expand-arrows-alt me-2"></i>Image Resizer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-format-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Image Format Converter
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imageSize = document.getElementById('imageSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const qualitySlider = document.getElementById('qualitySlider');
+            const qualityValue = document.getElementById('qualityValue');
+            const compressBtn = document.getElementById('compressBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultCard = document.getElementById('resultCard');
+            const compressedImage = document.getElementById('compressedImage');
+            const compressedSize = document.getElementById('compressedSize');
+            const compressedDimensions = document.getElementById('compressedDimensions');
+            const compressionRatio = document.getElementById('compressionRatio');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            let originalImage = null;
+            let originalWidth = 0;
+            let originalHeight = 0;
+
+            // Handle quality slider
+            qualitySlider.addEventListener('input', () => {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+            });
+
+            // Handle image selection
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    if (!file.type.startsWith('image/')) {
+                        alert('Please select a valid image file.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Validate file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('Image size should be less than 10MB.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreviewContainer.classList.remove('d-none');
+                        
+                        // Update image info
+                        imageSize.textContent = formatFileSize(file.size);
+                        const img = new Image();
+                        img.onload = () => {
+                            originalImage = img;
+                            originalWidth = img.width;
+                            originalHeight = img.height;
+                            imageDimensions.textContent = `${img.width} x ${img.height}`;
+                            
+                            // Enable buttons
+                            compressBtn.disabled = false;
+                            clearBtn.disabled = false;
+                            compressBtn.classList.add('btn-pulse');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Handle compression
+            compressBtn.addEventListener('click', () => {
+                if (!originalImage) return;
+
+                // Add loading state
+                compressBtn.disabled = true;
+                compressBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Compressing...';
+                
+                // Create canvas for compression
+                const canvas = document.createElement('canvas');
+                canvas.width = originalWidth;
+                canvas.height = originalHeight;
+                const ctx = canvas.getContext('2d');
+                
+                // Draw image
+                ctx.drawImage(originalImage, 0, 0);
+                
+                // Convert to blob with quality
+                canvas.toBlob((blob) => {
+                    // Update preview
+                    compressedImage.src = canvas.toDataURL();
+                    compressedSize.textContent = formatFileSize(blob.size);
+                    compressedDimensions.textContent = `${originalWidth} x ${originalHeight}`;
+                    
+                    // Calculate compression ratio
+                    const ratio = ((blob.size / imageInput.files[0].size) * 100).toFixed(1);
+                    compressionRatio.textContent = `${ratio}%`;
+                    
+                    // Show result card
+                    resultCard.classList.remove('d-none');
+                    
+                    // Reset button state
+                    compressBtn.disabled = false;
+                    compressBtn.innerHTML = '<i class="fas fa-compress-alt me-2"></i>Compress Image';
+                }, 'image/jpeg', qualitySlider.value / 100);
+            });
+
+            // Handle download
+            downloadBtn.addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.download = 'compressed-image.jpg';
+                link.href = compressedImage.src;
+                link.click();
+            });
+
+            // Clear all with animation
+            clearBtn.addEventListener('click', () => {
+                imageInput.value = '';
+                imagePreviewContainer.classList.add('d-none');
+                resultCard.classList.add('d-none');
+                qualitySlider.value = 80;
+                qualityValue.textContent = '80%';
+                compressBtn.disabled = true;
+                clearBtn.disabled = true;
+                compressBtn.classList.remove('btn-pulse');
+            });
+        });
+    </script>
+</body>
+</html> 

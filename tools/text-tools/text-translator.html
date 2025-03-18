@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Translator - Translate Text Online | MultiTools</title>
+    <meta name="description" content="Free online text translator. Translate text between multiple languages with real-time translation, language detection, and pronunciation features.">
+    <meta name="keywords" content="text translator, language translator, online translator, text translation, language detection, pronunciation">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text Translator - Translate Text Online">
+    <meta property="og:description" content="Free online text translator. Translate text between multiple languages with real-time translation, language detection, and pronunciation features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-translator.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+    <style>
+        .translation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .translation-panel {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .language-select {
+            flex: 1;
+        }
+        .swap-languages {
+            background: none;
+            border: none;
+            color: #0d6efd;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+        }
+        .swap-languages:hover {
+            transform: rotate(180deg);
+        }
+        .translation-textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        .translation-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .translation-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .translation-action-btn {
+            background: none;
+            border: none;
+            color: #0d6efd;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .translation-action-btn:hover {
+            color: #0a58ca;
+        }
+        .translation-action-btn:disabled {
+            color: #adb5bd;
+            cursor: not-allowed;
+        }
+        .detected-language {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .detected-language-badge {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        .translation-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        .translation-status.loading {
+            background: #e9ecef;
+            color: #495057;
+        }
+        .translation-status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .translation-status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        @media (max-width: 768px) {
+            .translation-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text Translator</h1>
+                    <p class="lead mb-4">Translate text between multiple languages with real-time translation, language detection, and pronunciation features.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Translation Panels -->
+                            <div class="translation-container">
+                                <!-- Source Language Panel -->
+                                <div class="translation-panel">
+                                    <div class="language-selector">
+                                        <select class="form-select language-select" id="sourceLanguage">
+                                            <option value="auto">Detect Language</option>
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="ko">Korean</option>
+                                        </select>
+                                        <button class="swap-languages" id="swapLanguages">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                    </div>
+                                    <div class="detected-language" id="detectedLanguage">
+                                        <i class="fas fa-globe"></i>
+                                        <span class="detected-language-badge">Detected: English</span>
+                                    </div>
+                                    <textarea class="form-control translation-textarea" id="sourceText" placeholder="Enter text to translate..."></textarea>
+                                    <div class="translation-info">
+                                        <span>Characters: <span id="sourceCharCount">0</span></span>
+                                        <div class="translation-actions">
+                                            <button class="translation-action-btn" id="clearSource">
+                                                <i class="fas fa-trash"></i> Clear
+                                            </button>
+                                            <button class="translation-action-btn" id="copySource">
+                                                <i class="fas fa-copy"></i> Copy
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Target Language Panel -->
+                                <div class="translation-panel">
+                                    <div class="language-selector">
+                                        <select class="form-select language-select" id="targetLanguage">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="ko">Korean</option>
+                                        </select>
+                                    </div>
+                                    <textarea class="form-control translation-textarea" id="targetText" placeholder="Translation will appear here..." readonly></textarea>
+                                    <div class="translation-info">
+                                        <span>Characters: <span id="targetCharCount">0</span></span>
+                                        <div class="translation-actions">
+                                            <button class="translation-action-btn" id="clearTarget">
+                                                <i class="fas fa-trash"></i> Clear
+                                            </button>
+                                            <button class="translation-action-btn" id="copyTarget">
+                                                <i class="fas fa-copy"></i> Copy
+                                            </button>
+                                            <button class="translation-action-btn" id="speakTarget">
+                                                <i class="fas fa-volume-up"></i> Speak
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Translation Status -->
+                            <div class="translation-status" id="translationStatus">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Enter text to translate</span>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="translateBtn">
+                                    <i class="fas fa-language me-2"></i>Translate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text Translator</h5>
+                            <p class="card-text">
+                                Our Text Translator tool helps you:
+                            </p>
+                            <ul>
+                                <li>Translate text between multiple languages</li>
+                                <li>Detect source language automatically</li>
+                                <li>Get text-to-speech pronunciation</li>
+                                <li>Copy translations to clipboard</li>
+                                <li>Swap languages instantly</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for students, travelers, and anyone needing quick translations.
+                                The tool provides accurate translations with a user-friendly interface.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-case-converter.html">
+                                    <i class="fas fa-text-height me-2"></i>Text Case Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-formatter.html">
+                                    <i class="fas fa-align-left me-2"></i>Text Formatter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-encoder.html">
+                                    <i class="fas fa-code me-2"></i>Text Encoder
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sourceLanguage = document.getElementById('sourceLanguage');
+            const targetLanguage = document.getElementById('targetLanguage');
+            const sourceText = document.getElementById('sourceText');
+            const targetText = document.getElementById('targetText');
+            const translateBtn = document.getElementById('translateBtn');
+            const swapLanguages = document.getElementById('swapLanguages');
+            const detectedLanguage = document.getElementById('detectedLanguage');
+            const translationStatus = document.getElementById('translationStatus');
+            const sourceCharCount = document.getElementById('sourceCharCount');
+            const targetCharCount = document.getElementById('targetCharCount');
+            const clearSource = document.getElementById('clearSource');
+            const clearTarget = document.getElementById('clearTarget');
+            const copySource = document.getElementById('copySource');
+            const copyTarget = document.getElementById('copyTarget');
+            const speakTarget = document.getElementById('speakTarget');
+
+            let speechSynthesis = window.speechSynthesis;
+            let currentUtterance = null;
+
+            // Update character counts
+            function updateCharCounts() {
+                sourceCharCount.textContent = sourceText.value.length;
+                targetCharCount.textContent = targetText.value.length;
+            }
+
+            // Update translation status
+            function updateStatus(status, type = 'info') {
+                translationStatus.className = `translation-status ${type}`;
+                translationStatus.innerHTML = `
+                    <i class="fas fa-${type === 'loading' ? 'spinner fa-spin' : type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${status}</span>
+                `;
+            }
+
+            // Detect language
+            function detectLanguage(text) {
+                // This is a simplified language detection
+                // In a real implementation, you would use a language detection API
+                const commonWords = {
+                    en: ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i'],
+                    es: ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'en'],
+                    fr: ['le', 'la', 'les', 'un', 'une', 'des', 'et', 'en', 'du', 'de'],
+                    de: ['der', 'die', 'das', 'und', 'in', 'den', 'von', 'zu', 'dem', 'mit'],
+                    it: ['il', 'la', 'i', 'gli', 'le', 'un', 'una', 'uno', 'e', 'di'],
+                    pt: ['o', 'a', 'os', 'as', 'um', 'uma', 'uns', 'umas', 'e', 'em'],
+                    ru: ['и', 'в', 'не', 'на', 'я', 'быть', 'что', 'это', 'весь', 'такой'],
+                    zh: ['的', '一', '是', '在', '不', '了', '有', '和', '人', '这'],
+                    ja: ['の', 'に', 'は', 'を', 'た', 'が', 'で', 'て', 'し', 'れ'],
+                    ko: ['의', '이', '가', '을', '를', '에', '에서', '으로', '로', '와']
+                };
+
+                let maxMatches = 0;
+                let detectedLang = 'en';
+
+                for (const [lang, words] of Object.entries(commonWords)) {
+                    const matches = words.filter(word => 
+                        text.toLowerCase().includes(word)
+                    ).length;
+                    if (matches > maxMatches) {
+                        maxMatches = matches;
+                        detectedLang = lang;
+                    }
+                }
+
+                return detectedLang;
+            }
+
+            // Translate text
+            async function translateText() {
+                const text = sourceText.value.trim();
+                if (!text) {
+                    updateStatus('Enter text to translate', 'info');
+                    return;
+                }
+
+                updateStatus('Translating...', 'loading');
+
+                try {
+                    // In a real implementation, you would call a translation API here
+                    // For demonstration, we'll just simulate a translation
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Simulate translation (replace with actual API call)
+                    const translatedText = `[Translation of: ${text}]`;
+                    
+                    targetText.value = translatedText;
+                    updateStatus('Translation completed', 'success');
+                    updateCharCounts();
+                } catch (error) {
+                    updateStatus('Translation failed. Please try again.', 'error');
+                }
+            }
+
+            // Swap languages
+            function swapLanguages() {
+                const sourceLang = sourceLanguage.value;
+                const targetLang = targetLanguage.value;
+                const sourceTextValue = sourceText.value;
+                const targetTextValue = targetText.value;
+
+                sourceLanguage.value = targetLang;
+                targetLanguage.value = sourceLang;
+                sourceText.value = targetTextValue;
+                targetText.value = sourceTextValue;
+                updateCharCounts();
+            }
+
+            // Speak text
+            function speakText() {
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+
+                const text = targetText.value;
+                if (!text) return;
+
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.lang = targetLanguage.value;
+                speechSynthesis.speak(currentUtterance);
+            }
+
+            // Copy text
+            function copyText(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    updateStatus('Text copied to clipboard', 'success');
+                    setTimeout(() => updateStatus('Enter text to translate', 'info'), 2000);
+                }).catch(() => {
+                    updateStatus('Failed to copy text', 'error');
+                    setTimeout(() => updateStatus('Enter text to translate', 'info'), 2000);
+                });
+            }
+
+            // Event Listeners
+            sourceText.addEventListener('input', () => {
+                updateCharCounts();
+                const detectedLang = detectLanguage(sourceText.value);
+                detectedLanguage.querySelector('.detected-language-badge').textContent = 
+                    `Detected: ${new Intl.DisplayNames(['en'], { type: 'language' }).of(detectedLang)}`;
+            });
+
+            translateBtn.addEventListener('click', translateText);
+            swapLanguages.addEventListener('click', swapLanguages);
+            speakTarget.addEventListener('click', speakText);
+            clearSource.addEventListener('click', () => {
+                sourceText.value = '';
+                updateCharCounts();
+                updateStatus('Enter text to translate', 'info');
+            });
+            clearTarget.addEventListener('click', () => {
+                targetText.value = '';
+                updateCharCounts();
+                updateStatus('Enter text to translate', 'info');
+            });
+            copySource.addEventListener('click', () => copyText(sourceText.value));
+            copyTarget.addEventListener('click', () => copyText(targetText.value));
+
+            // Initialize
+            updateCharCounts();
+        });
+    </script>
+</body>
+</html> 

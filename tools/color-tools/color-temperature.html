@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Temperature - Analyze Color Warmth Online | MultiTools</title>
+    <meta name="description" content="Free online color temperature analyzer. Analyze and adjust the warmth or coolness of colors. Create harmonious warm or cool color schemes.">
+    <meta name="keywords" content="color temperature, warm colors, cool colors, color warmth, color analysis, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Temperature - Analyze Color Warmth Online">
+    <meta property="og:description" content="Free online color temperature analyzer. Analyze and adjust the warmth or coolness of colors. Create harmonious warm or cool color schemes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-temperature.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Temperature</h1>
+                    <p class="lead mb-4">Analyze and adjust the warmth or coolness of colors. Create harmonious warm or cool color schemes.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Color Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Select Colors:</label>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="primary">
+                                        <i class="fas fa-paint-brush me-2"></i>Primary Color
+                                    </button>
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="secondary">
+                                        <i class="fas fa-paint-brush me-2"></i>Secondary Color
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Input -->
+                            <div class="mb-4">
+                                <label class="form-label">Color Value:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="colorInput" placeholder="#000000">
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Enter a color code or use the color picker</div>
+                            </div>
+
+                            <!-- Color Adjustments -->
+                            <div class="mb-4">
+                                <label class="form-label">Adjust Color:</label>
+                                <div class="color-sliders">
+                                    <div class="color-slider">
+                                        <label for="hueSlider">Hue</label>
+                                        <input type="range" class="form-range" id="hueSlider" min="0" max="360" value="0">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="saturationSlider">Saturation</label>
+                                        <input type="range" class="form-range" id="saturationSlider" min="0" max="100" value="100">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="lightnessSlider">Lightness</label>
+                                        <input type="range" class="form-range" id="lightnessSlider" min="0" max="100" value="50">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Preview -->
+                            <div class="color-preview mb-4">
+                                <div class="preview-container">
+                                    <div class="preview-box" id="primaryPreview" style="background-color: #000000">
+                                        <div class="preview-label">Primary</div>
+                                    </div>
+                                    <div class="preview-box" id="secondaryPreview" style="background-color: #ffffff">
+                                        <div class="preview-label">Secondary</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Temperature Analysis -->
+                            <div class="temperature-analysis mb-4">
+                                <h5 class="mb-3">Temperature Analysis</h5>
+                                <div class="analysis-item">
+                                    <strong>Temperature Score:</strong>
+                                    <span id="temperatureScore">0°K</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>Warmth Level:</strong>
+                                    <span id="warmthLevel">Neutral</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>Color Balance:</strong>
+                                    <span id="colorBalance">Balanced</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Temperature Scale -->
+                            <div class="temperature-scale mb-4">
+                                <h5 class="mb-3">Temperature Scale</h5>
+                                <div class="scale-container">
+                                    <div class="scale-label">Cool</div>
+                                    <div class="scale-bar">
+                                        <div class="scale-marker" id="temperatureMarker"></div>
+                                    </div>
+                                    <div class="scale-label">Warm</div>
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info">
+                                <div class="color-value" id="hexValue">
+                                    <strong>HEX:</strong> <span>#000000</span>
+                                </div>
+                                <div class="color-value" id="rgbValue">
+                                    <strong>RGB:</strong> <span>rgb(0, 0, 0)</span>
+                                </div>
+                                <div class="color-value" id="hslValue">
+                                    <strong>HSL:</strong> <span>hsl(0, 0%, 0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Colors
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Temperature</h5>
+                            <p class="card-text">
+                                Our Color Temperature Analyzer helps you:
+                            </p>
+                            <ul>
+                                <li>Analyze color warmth and coolness</li>
+                                <li>Create harmonious color schemes</li>
+                                <li>Balance warm and cool colors</li>
+                                <li>Understand color temperature relationships</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for designers, photographers, and anyone working with color.
+                                The tool helps you create balanced and visually appealing color combinations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-palette.html">
+                                    <i class="fas fa-palette me-2"></i>Color Palette
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorInput = document.getElementById('colorInput');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const primaryPreview = document.getElementById('primaryPreview');
+            const secondaryPreview = document.getElementById('secondaryPreview');
+            const hexValue = document.getElementById('hexValue');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const colorButtons = document.querySelectorAll('[data-color]');
+            const hueSlider = document.getElementById('hueSlider');
+            const saturationSlider = document.getElementById('saturationSlider');
+            const lightnessSlider = document.getElementById('lightnessSlider');
+            const temperatureScore = document.getElementById('temperatureScore');
+            const warmthLevel = document.getElementById('warmthLevel');
+            const colorBalance = document.getElementById('colorBalance');
+            const temperatureMarker = document.getElementById('temperatureMarker');
+
+            let currentColor = '#000000';
+            let selectedColor = 'primary';
+            let primaryColor = '#000000';
+            let secondaryColor = '#ffffff';
+
+            // Handle color selection
+            colorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    colorButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedColor = button.dataset.color;
+                    updateInputValue();
+                });
+            });
+
+            // Update input value based on selected color
+            function updateInputValue() {
+                colorInput.value = selectedColor === 'primary' ? primaryColor : secondaryColor;
+                updateSliders(colorInput.value);
+            }
+
+            // Handle color input
+            colorInput.addEventListener('input', () => {
+                const value = colorInput.value.trim();
+                if (isValidHexColor(value)) {
+                    if (selectedColor === 'primary') {
+                        primaryColor = value;
+                        primaryPreview.style.backgroundColor = value;
+                    } else {
+                        secondaryColor = value;
+                        secondaryPreview.style.backgroundColor = value;
+                    }
+                    updateAnalysis();
+                }
+            });
+
+            // Handle paste button
+            pasteBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    colorInput.value = text.trim();
+                    if (isValidHexColor(text.trim())) {
+                        if (selectedColor === 'primary') {
+                            primaryColor = text.trim();
+                            primaryPreview.style.backgroundColor = text.trim();
+                        } else {
+                            secondaryColor = text.trim();
+                            secondaryPreview.style.backgroundColor = text.trim();
+                        }
+                        updateAnalysis();
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Handle color sliders
+            hueSlider.addEventListener('input', updateColorFromSliders);
+            saturationSlider.addEventListener('input', updateColorFromSliders);
+            lightnessSlider.addEventListener('input', updateColorFromSliders);
+
+            // Update color from sliders
+            function updateColorFromSliders() {
+                const h = hueSlider.value;
+                const s = saturationSlider.value;
+                const l = lightnessSlider.value;
+                const color = hslToHex(h, s, l);
+                
+                if (selectedColor === 'primary') {
+                    primaryColor = color;
+                    primaryPreview.style.backgroundColor = color;
+                } else {
+                    secondaryColor = color;
+                    secondaryPreview.style.backgroundColor = color;
+                }
+                
+                colorInput.value = color;
+                updateAnalysis();
+            }
+
+            // Update sliders from color
+            function updateSliders(color) {
+                const rgb = hexToRgb(color);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                hueSlider.value = hsl.h;
+                saturationSlider.value = hsl.s;
+                lightnessSlider.value = hsl.l;
+            }
+
+            // Update temperature analysis
+            function updateAnalysis() {
+                const primaryRgb = hexToRgb(primaryColor);
+                const secondaryRgb = hexToRgb(secondaryColor);
+                const primaryHsl = rgbToHsl(primaryRgb.r, primaryRgb.g, primaryRgb.b);
+                const secondaryHsl = rgbToHsl(secondaryRgb.r, secondaryRgb.g, secondaryRgb.b);
+
+                // Calculate temperature score
+                const temp = calculateTemperature(primaryHsl);
+                temperatureScore.textContent = temp + '°K';
+                temperatureScore.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    ((temp - 1000) / 9000) * 100 + '%';
+
+                // Calculate warmth level
+                const warmth = calculateWarmth(primaryHsl);
+                warmthLevel.textContent = warmth;
+                warmthLevel.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    (warmth === 'Cool' ? 0 : warmth === 'Warm' ? 100 : 50) + '%';
+
+                // Calculate color balance
+                const balance = calculateBalance(primaryHsl, secondaryHsl);
+                colorBalance.textContent = balance;
+                colorBalance.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    (balance === 'Balanced' ? 50 : balance === 'Warm' ? 100 : 0) + '%';
+
+                // Update temperature marker
+                updateTemperatureMarker(temp);
+            }
+
+            // Calculate color temperature
+            function calculateTemperature(hsl) {
+                // Convert HSL to temperature (simplified model)
+                // Warm colors (reds, oranges, yellows) have higher temperatures
+                // Cool colors (blues, cyans) have lower temperatures
+                let temp = 6500; // Neutral temperature (daylight)
+
+                if (hsl.h >= 0 && hsl.h < 60) { // Reds
+                    temp = 10000 - (hsl.h / 60) * 3500;
+                } else if (hsl.h >= 60 && hsl.h < 120) { // Yellows
+                    temp = 6500 + (hsl.h - 60) / 60 * 3500;
+                } else if (hsl.h >= 120 && hsl.h < 180) { // Greens
+                    temp = 6500 - (hsl.h - 120) / 60 * 3500;
+                } else if (hsl.h >= 180 && hsl.h < 240) { // Cyans
+                    temp = 3000 + (hsl.h - 180) / 60 * 3500;
+                } else if (hsl.h >= 240 && hsl.h < 300) { // Blues
+                    temp = 3000 - (hsl.h - 240) / 60 * 3500;
+                } else if (hsl.h >= 300 && hsl.h < 360) { // Magentas
+                    temp = 6500 + (hsl.h - 300) / 60 * 3500;
+                }
+
+                // Adjust for saturation and lightness
+                temp *= (1 + (hsl.s / 100) * 0.2);
+                temp *= (1 + (hsl.l / 100) * 0.1);
+
+                return Math.round(temp);
+            }
+
+            // Calculate warmth level
+            function calculateWarmth(hsl) {
+                const temp = calculateTemperature(hsl);
+                if (temp > 6500) return 'Warm';
+                if (temp < 6500) return 'Cool';
+                return 'Neutral';
+            }
+
+            // Calculate color balance
+            function calculateBalance(color1, color2) {
+                const temp1 = calculateTemperature(color1);
+                const temp2 = calculateTemperature(color2);
+                const avgTemp = (temp1 + temp2) / 2;
+
+                if (Math.abs(temp1 - temp2) < 1000) return 'Balanced';
+                return avgTemp > 6500 ? 'Warm' : 'Cool';
+            }
+
+            // Update temperature marker position
+            function updateTemperatureMarker(temp) {
+                const position = ((temp - 1000) / 9000) * 100;
+                temperatureMarker.style.left = position + '%';
+            }
+
+            // Copy colors
+            copyBtn.addEventListener('click', () => {
+                const text = `Primary: ${primaryColor}\nSecondary: ${secondaryColor}`;
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                colorInput.value = '';
+                primaryColor = '#000000';
+                secondaryColor = '#ffffff';
+                primaryPreview.style.backgroundColor = primaryColor;
+                secondaryPreview.style.backgroundColor = secondaryColor;
+                updateSliders(primaryColor);
+                updateAnalysis();
+            });
+
+            // Color conversion functions
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            function hslToHex(h, s, l) {
+                s /= 100;
+                l /= 100;
+                const c = (1 - Math.abs(2 * l - 1)) * s;
+                const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+                const rgb = [0, 0, 0];
+                let r, g, b;
+
+                if (h >= 0 && h < 60) {
+                    rgb[0] = c; rgb[1] = x; rgb[2] = 0;
+                } else if (h >= 60 && h < 120) {
+                    rgb[0] = x; rgb[1] = c; rgb[2] = 0;
+                } else if (h >= 120 && h < 180) {
+                    rgb[0] = 0; rgb[1] = c; rgb[2] = x;
+                } else if (h >= 180 && h < 240) {
+                    rgb[0] = 0; rgb[1] = x; rgb[2] = c;
+                } else if (h >= 240 && h < 300) {
+                    rgb[0] = x; rgb[1] = 0; rgb[2] = c;
+                } else if (h >= 300 && h < 360) {
+                    rgb[0] = c; rgb[1] = 0; rgb[2] = x;
+                }
+
+                const m = l - c / 2;
+                rgb[0] = Math.round((rgb[0] + m) * 255);
+                rgb[1] = Math.round((rgb[1] + m) * 255);
+                rgb[2] = Math.round((rgb[2] + m) * 255);
+
+                return `#${rgb.map(x => {
+                    const hex = x.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('')}`;
+            }
+
+            // Set initial color button as active
+            colorButtons[0].click();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Base64 Converter - Convert Text to Base64 Online | MultiTools</title>
+    <meta name="description" content="Free online text to Base64 converter. Convert any text to Base64 encoded string instantly. Fast, easy to use, and no registration required.">
+    <meta name="keywords" content="text to base64, base64 converter, text converter, base64 encode, online converter, free converter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text to Base64 Converter - Convert Text to Base64 Online">
+    <meta property="og:description" content="Free online text to Base64 converter. Convert any text to Base64 encoded string instantly. Fast, easy to use, and no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-to-base64.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text to Base64 Converter</h1>
+                    <p class="lead mb-4">Convert any text to Base64 encoded string instantly. Fast, free, and easy to use.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="inputText" class="form-label">Enter Text:</label>
+                                <textarea class="form-control" id="inputText" rows="4" placeholder="Type or paste your text here..."></textarea>
+                                <div class="form-text text-muted mt-2">
+                                    <i class="fas fa-info-circle me-1"></i>Supports all ASCII and Unicode characters
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="addLineBreaks" checked>
+                                    <label class="form-check-label" for="addLineBreaks">
+                                        Add line breaks every 76 characters
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary" id="convertBtn">
+                                        <i class="fas fa-exchange-alt me-2"></i>Convert to Base64
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="result-card mb-4 d-none" id="resultCard">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Base64 Result</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Base64 String:</label>
+                                <div class="result-box">
+                                    <code id="base64Result"></code>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-success" id="copyBtn">
+                                    <i class="fas fa-copy me-2"></i>Copy to Clipboard
+                                </button>
+                                <div class="text-muted">
+                                    <small>Length: <span id="base64Length">0</span> characters</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text to Base64 Converter</h5>
+                            <p class="card-text">
+                                Our Text to Base64 Converter allows you to:
+                            </p>
+                            <ul>
+                                <li>Convert any text to Base64 encoded string</li>
+                                <li>Support for all ASCII and Unicode characters</li>
+                                <li>Option to add line breaks for readability</li>
+                                <li>Copy result to clipboard</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for web developers, programmers, and anyone working with Base64 encoding.
+                                The tool provides instant conversion with accurate results.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-to-binary.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Text to Binary
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/binary-to-text.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Binary to Text
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-to-hex.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Text to Hex
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputText = document.getElementById('inputText');
+            const addLineBreaks = document.getElementById('addLineBreaks');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultCard = document.getElementById('resultCard');
+            const base64Result = document.getElementById('base64Result');
+            const base64Length = document.getElementById('base64Length');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // Add input event listener for real-time conversion
+            inputText.addEventListener('input', () => {
+                if (inputText.value.trim()) {
+                    convertBtn.classList.add('btn-pulse');
+                } else {
+                    convertBtn.classList.remove('btn-pulse');
+                }
+            });
+
+            // Convert text to Base64
+            function textToBase64(text, addLineBreaks) {
+                const base64 = btoa(unescape(encodeURIComponent(text)));
+                if (addLineBreaks) {
+                    return base64.replace(/(.{76})/g, '$1\n');
+                }
+                return base64;
+            }
+
+            // Handle conversion
+            convertBtn.addEventListener('click', () => {
+                const text = inputText.value.trim();
+                if (text) {
+                    // Add loading state
+                    convertBtn.disabled = true;
+                    convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Converting...';
+                    
+                    // Simulate processing time for better UX
+                    setTimeout(() => {
+                        const base64 = textToBase64(text, addLineBreaks.checked);
+                        base64Result.textContent = base64;
+                        base64Length.textContent = base64.replace(/\n/g, '').length;
+                        resultCard.classList.remove('d-none');
+                        
+                        // Reset button state
+                        convertBtn.disabled = false;
+                        convertBtn.innerHTML = '<i class="fas fa-exchange-alt me-2"></i>Convert to Base64';
+                    }, 500);
+                }
+            });
+
+            // Copy to clipboard with enhanced feedback
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(base64Result.textContent)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy to Clipboard';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy to Clipboard';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all with animation
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                resultCard.classList.add('d-none');
+                convertBtn.classList.remove('btn-pulse');
+            });
+        });
+    </script>
+</body>
+</html> 

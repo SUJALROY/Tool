@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generator - Generate Text Content Online | MultiTools</title>
+    <meta name="description" content="Free online text generator. Generate Lorem Ipsum, random text, passwords, and more with customizable options and formatting.">
+    <meta name="keywords" content="text generator, lorem ipsum generator, password generator, random text generator, content generator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text Generator - Generate Text Content Online">
+    <meta property="og:description" content="Free online text generator. Generate Lorem Ipsum, random text, passwords, and more with customizable options and formatting.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-generator.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+    <style>
+        .generator-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .generator-option {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .generator-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .generator-option.active {
+            border-color: #0d6efd;
+            background: #f8f9fa;
+        }
+        .generator-option i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0d6efd;
+        }
+        .generator-option h6 {
+            margin: 0;
+            color: #212529;
+        }
+        .generator-option p {
+            margin: 0.5rem 0 0;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .generator-settings {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .setting-group {
+            margin-bottom: 1rem;
+        }
+        .setting-group:last-child {
+            margin-bottom: 0;
+        }
+        .setting-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .generated-text {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .generation-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .password-strength {
+            height: 4px;
+            background: #dee2e6;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        .password-strength-bar.weak { width: 25%; background-color: #dc3545; }
+        .password-strength-bar.medium { width: 50%; background-color: #ffc107; }
+        .password-strength-bar.strong { width: 75%; background-color: #28a745; }
+        .password-strength-bar.very-strong { width: 100%; background-color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text Generator</h1>
+                    <p class="lead mb-4">Generate Lorem Ipsum, random text, passwords, and more with customizable options and formatting.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Generator Options -->
+                            <div class="generator-options">
+                                <div class="generator-option active" data-type="lorem">
+                                    <i class="fas fa-paragraph"></i>
+                                    <h6>Lorem Ipsum</h6>
+                                    <p>Generate placeholder text</p>
+                                </div>
+                                <div class="generator-option" data-type="random">
+                                    <i class="fas fa-random"></i>
+                                    <h6>Random Text</h6>
+                                    <p>Generate random words</p>
+                                </div>
+                                <div class="generator-option" data-type="password">
+                                    <i class="fas fa-key"></i>
+                                    <h6>Password</h6>
+                                    <p>Generate secure passwords</p>
+                                </div>
+                                <div class="generator-option" data-type="username">
+                                    <i class="fas fa-user"></i>
+                                    <h6>Username</h6>
+                                    <p>Generate usernames</p>
+                                </div>
+                                <div class="generator-option" data-type="uuid">
+                                    <i class="fas fa-fingerprint"></i>
+                                    <h6>UUID</h6>
+                                    <p>Generate unique IDs</p>
+                                </div>
+                                <div class="generator-option" data-type="hash">
+                                    <i class="fas fa-hashtag"></i>
+                                    <h6>Hash</h6>
+                                    <p>Generate hash values</p>
+                                </div>
+                            </div>
+
+                            <!-- Generator Settings -->
+                            <div class="generator-settings">
+                                <!-- Lorem Ipsum Settings -->
+                                <div class="setting-group" id="loremSettings">
+                                    <label>Number of paragraphs</label>
+                                    <input type="number" class="form-control" id="paragraphCount" value="3" min="1" max="100">
+                                </div>
+
+                                <!-- Random Text Settings -->
+                                <div class="setting-group d-none" id="randomSettings">
+                                    <label>Number of words</label>
+                                    <input type="number" class="form-control" id="wordCount" value="10" min="1" max="1000">
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="startWithCapital" checked>
+                                        <label class="form-check-label" for="startWithCapital">Start with capital letter</label>
+                                    </div>
+                                </div>
+
+                                <!-- Password Settings -->
+                                <div class="setting-group d-none" id="passwordSettings">
+                                    <label>Password length</label>
+                                    <input type="number" class="form-control" id="passwordLength" value="12" min="8" max="64">
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="includeUppercase" checked>
+                                        <label class="form-check-label" for="includeUppercase">Include uppercase letters</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="includeLowercase" checked>
+                                        <label class="form-check-label" for="includeLowercase">Include lowercase letters</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="includeNumbers" checked>
+                                        <label class="form-check-label" for="includeNumbers">Include numbers</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="includeSymbols" checked>
+                                        <label class="form-check-label" for="includeSymbols">Include symbols</label>
+                                    </div>
+                                    <div class="password-strength">
+                                        <div class="password-strength-bar" id="passwordStrength"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Username Settings -->
+                                <div class="setting-group d-none" id="usernameSettings">
+                                    <label>Number of usernames</label>
+                                    <input type="number" class="form-control" id="usernameCount" value="5" min="1" max="100">
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="includeNumbersInUsername" checked>
+                                        <label class="form-check-label" for="includeNumbersInUsername">Include numbers</label>
+                                    </div>
+                                </div>
+
+                                <!-- UUID Settings -->
+                                <div class="setting-group d-none" id="uuidSettings">
+                                    <label>Number of UUIDs</label>
+                                    <input type="number" class="form-control" id="uuidCount" value="1" min="1" max="100">
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="removeHyphens" checked>
+                                        <label class="form-check-label" for="removeHyphens">Remove hyphens</label>
+                                    </div>
+                                </div>
+
+                                <!-- Hash Settings -->
+                                <div class="setting-group d-none" id="hashSettings">
+                                    <label>Input text</label>
+                                    <input type="text" class="form-control" id="hashInput" placeholder="Enter text to hash">
+                                    <div class="form-check mt-2">
+                                        <input type="radio" class="form-check-input" name="hashType" id="md5" value="md5" checked>
+                                        <label class="form-check-label" for="md5">MD5</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="hashType" id="sha1" value="sha1">
+                                        <label class="form-check-label" for="sha1">SHA-1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="hashType" id="sha256" value="sha256">
+                                        <label class="form-check-label" for="sha256">SHA-256</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Generation Stats -->
+                            <div class="generation-stats">
+                                <span>Generated: <span id="generationCount">0</span> items</span>
+                                <span>Processing time: <span id="processingTime">0</span> ms</span>
+                            </div>
+
+                            <!-- Generated Text -->
+                            <div class="generated-text" id="generatedText"></div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="generateBtn">
+                                    <i class="fas fa-magic me-2"></i>Generate
+                                </button>
+                                <button class="btn btn-outline-secondary" id="copyBtn">
+                                    <i class="fas fa-copy me-2"></i>Copy
+                                </button>
+                                <button class="btn btn-outline-secondary" id="clearBtn">
+                                    <i class="fas fa-trash me-2"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text Generator</h5>
+                            <p class="card-text">
+                                Our Text Generator tool helps you:
+                            </p>
+                            <ul>
+                                <li>Generate Lorem Ipsum placeholder text</li>
+                                <li>Create random text and words</li>
+                                <li>Generate secure passwords</li>
+                                <li>Create unique usernames</li>
+                                <li>Generate UUIDs and hashes</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for developers, designers, and content creators.
+                                The tool provides various text generation options with customizable settings.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-case-converter.html">
+                                    <i class="fas fa-text-height me-2"></i>Text Case Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-formatter.html">
+                                    <i class="fas fa-align-left me-2"></i>Text Formatter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-encoder.html">
+                                    <i class="fas fa-code me-2"></i>Text Encoder
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const generatorOptions = document.querySelectorAll('.generator-option');
+            const settingGroups = document.querySelectorAll('.setting-group');
+            const generatedText = document.getElementById('generatedText');
+            const generationCount = document.getElementById('generationCount');
+            const processingTime = document.getElementById('processingTime');
+            const generateBtn = document.getElementById('generateBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const passwordStrength = document.getElementById('passwordStrength');
+
+            // Lorem Ipsum words
+            const loremWords = [
+                'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+                'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+                'magna', 'aliqua', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud', 'exercitation',
+                'ullamco', 'laboris', 'nisi', 'ut', 'aliquip', 'ex', 'ea', 'commodo', 'consequat',
+                'duis', 'aute', 'irure', 'dolor', 'in', 'reprehenderit', 'voluptate', 'velit',
+                'esse', 'cillum', 'dolore', 'eu', 'fugiat', 'nulla', 'pariatur', 'excepteur',
+                'sint', 'occaecat', 'cupidatat', 'non', 'proident', 'sunt', 'culpa', 'qui',
+                'officia', 'deserunt', 'mollit', 'anim', 'id', 'est', 'laborum'
+            ];
+
+            // Random words
+            const randomWords = [
+                'apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew',
+                'kiwi', 'lemon', 'mango', 'nectarine', 'orange', 'papaya', 'quince', 'raspberry',
+                'strawberry', 'tangerine', 'ugli', 'watermelon', 'xigua', 'yellow', 'zucchini',
+                'air', 'book', 'cat', 'dog', 'elephant', 'fish', 'giraffe', 'horse', 'iguana',
+                'jellyfish', 'kangaroo', 'lion', 'monkey', 'newt', 'octopus', 'penguin', 'quail',
+                'rabbit', 'snake', 'tiger', 'umbrella', 'vulture', 'whale', 'x-ray', 'yak', 'zebra'
+            ];
+
+            // Toggle generator option
+            generatorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Update active state
+                    generatorOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+
+                    // Show/hide settings
+                    const type = option.dataset.type;
+                    settingGroups.forEach(group => {
+                        group.classList.add('d-none');
+                        if (group.id === `${type}Settings`) {
+                            group.classList.remove('d-none');
+                        }
+                    });
+                });
+            });
+
+            // Generate Lorem Ipsum text
+            function generateLoremIpsum() {
+                const paragraphs = parseInt(document.getElementById('paragraphCount').value);
+                let text = '';
+
+                for (let i = 0; i < paragraphs; i++) {
+                    const sentenceCount = Math.floor(Math.random() * 3) + 3;
+                    let paragraph = '';
+
+                    for (let j = 0; j < sentenceCount; j++) {
+                        const wordCount = Math.floor(Math.random() * 10) + 5;
+                        let sentence = '';
+
+                        for (let k = 0; k < wordCount; k++) {
+                            const word = loremWords[Math.floor(Math.random() * loremWords.length)];
+                            sentence += (k === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word) + ' ';
+                        }
+
+                        paragraph += sentence.trim() + '. ';
+                    }
+
+                    text += paragraph.trim() + '\n\n';
+                }
+
+                return text.trim();
+            }
+
+            // Generate random text
+            function generateRandomText() {
+                const words = parseInt(document.getElementById('wordCount').value);
+                const startWithCapital = document.getElementById('startWithCapital').checked;
+                let text = '';
+
+                for (let i = 0; i < words; i++) {
+                    const word = randomWords[Math.floor(Math.random() * randomWords.length)];
+                    text += (i === 0 && startWithCapital ? word.charAt(0).toUpperCase() + word.slice(1) : word) + ' ';
+                }
+
+                return text.trim();
+            }
+
+            // Generate password
+            function generatePassword() {
+                const length = parseInt(document.getElementById('passwordLength').value);
+                const includeUppercase = document.getElementById('includeUppercase').checked;
+                const includeLowercase = document.getElementById('includeLowercase').checked;
+                const includeNumbers = document.getElementById('includeNumbers').checked;
+                const includeSymbols = document.getElementById('includeSymbols').checked;
+
+                let chars = '';
+                if (includeUppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                if (includeLowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+                if (includeNumbers) chars += '0123456789';
+                if (includeSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+                if (!chars) return 'Please select at least one character type';
+
+                let password = '';
+                for (let i = 0; i < length; i++) {
+                    password += chars[Math.floor(Math.random() * chars.length)];
+                }
+
+                // Calculate password strength
+                let strength = 0;
+                if (includeUppercase) strength++;
+                if (includeLowercase) strength++;
+                if (includeNumbers) strength++;
+                if (includeSymbols) strength++;
+                strength = Math.min(strength, 4);
+
+                const strengthClasses = ['weak', 'medium', 'strong', 'very-strong'];
+                passwordStrength.className = 'password-strength-bar ' + strengthClasses[strength - 1];
+
+                return password;
+            }
+
+            // Generate username
+            function generateUsername() {
+                const count = parseInt(document.getElementById('usernameCount').value);
+                const includeNumbers = document.getElementById('includeNumbersInUsername').checked;
+                const usernames = [];
+
+                for (let i = 0; i < count; i++) {
+                    let username = randomWords[Math.floor(Math.random() * randomWords.length)];
+                    if (includeNumbers) {
+                        username += Math.floor(Math.random() * 1000);
+                    }
+                    usernames.push(username);
+                }
+
+                return usernames.join('\n');
+            }
+
+            // Generate UUID
+            function generateUUID() {
+                const count = parseInt(document.getElementById('uuidCount').value);
+                const removeHyphens = document.getElementById('removeHyphens').checked;
+                const uuids = [];
+
+                for (let i = 0; i < count; i++) {
+                    let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                        const r = Math.random() * 16 | 0;
+                        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                        return v.toString(16);
+                    });
+                    if (removeHyphens) {
+                        uuid = uuid.replace(/-/g, '');
+                    }
+                    uuids.push(uuid);
+                }
+
+                return uuids.join('\n');
+            }
+
+            // Generate hash
+            async function generateHash() {
+                const text = document.getElementById('hashInput').value;
+                const type = document.querySelector('input[name="hashType"]:checked').value;
+
+                if (!text) return 'Please enter text to hash';
+
+                const encoder = new TextEncoder();
+                const data = encoder.encode(text);
+                const hashBuffer = await crypto.subtle.digest(type, data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                return hashHex;
+            }
+
+            // Generate content
+            async function generateContent() {
+                const startTime = performance.now();
+                const activeOption = document.querySelector('.generator-option.active');
+                const type = activeOption.dataset.type;
+                let content = '';
+
+                switch (type) {
+                    case 'lorem':
+                        content = generateLoremIpsum();
+                        break;
+                    case 'random':
+                        content = generateRandomText();
+                        break;
+                    case 'password':
+                        content = generatePassword();
+                        break;
+                    case 'username':
+                        content = generateUsername();
+                        break;
+                    case 'uuid':
+                        content = generateUUID();
+                        break;
+                    case 'hash':
+                        content = await generateHash();
+                        break;
+                }
+
+                const endTime = performance.now();
+                processingTime.textContent = Math.round(endTime - startTime);
+                generationCount.textContent = content.split('\n').length;
+                generatedText.textContent = content;
+            }
+
+            // Copy text to clipboard
+            function copyToClipboard() {
+                navigator.clipboard.writeText(generatedText.textContent).then(() => {
+                    const btn = copyBtn;
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check me-2"></i>Copied';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                });
+            }
+
+            // Event Listeners
+            generateBtn.addEventListener('click', generateContent);
+            copyBtn.addEventListener('click', copyToClipboard);
+            clearBtn.addEventListener('click', () => {
+                generatedText.textContent = '';
+                generationCount.textContent = '0';
+                processingTime.textContent = '0';
+                passwordStrength.className = 'password-strength-bar';
+            });
+
+            // Initialize
+            generateContent();
+        });
+    </script>
+</body>
+</html> 

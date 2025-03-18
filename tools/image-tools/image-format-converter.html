@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Format Converter - Convert Images Online | MultiTools</title>
+    <meta name="description" content="Free online image format converter. Convert images between JPG, PNG, GIF, WebP, and more formats. Fast, easy to use, and no registration required.">
+    <meta name="keywords" content="image converter, convert image format, image format converter, jpg to png, png to jpg, online converter, free converter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image Format Converter - Convert Images Online">
+    <meta property="og:description" content="Free online image format converter. Convert images between JPG, PNG, GIF, WebP, and more formats. Fast, easy to use, and no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/image-tools/image-format-converter.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="image-tool-container p-4">
+                    <h1 class="mb-4">Image Format Converter</h1>
+                    <p class="lead mb-4">Convert images between different formats instantly. Fast, free, and easy to use.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageInput" class="form-label">Select Image:</label>
+                                <div class="image-upload-container">
+                                    <input type="file" class="form-control" id="imageInput" accept="image/*">
+                                    <div class="image-preview-container mt-3 d-none" id="imagePreviewContainer">
+                                        <img id="imagePreview" class="img-fluid rounded" alt="Preview">
+                                        <div class="image-info mt-2">
+                                            <small class="text-muted">Size: <span id="imageSize">0 KB</span></small>
+                                            <small class="text-muted ms-3">Dimensions: <span id="imageDimensions">0 x 0</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formatSelect" class="form-label">Convert to Format:</label>
+                                <select class="form-select" id="formatSelect">
+                                    <option value="jpeg">JPEG/JPG</option>
+                                    <option value="png">PNG</option>
+                                    <option value="gif">GIF</option>
+                                    <option value="webp">WebP</option>
+                                    <option value="bmp">BMP</option>
+                                    <option value="tiff">TIFF</option>
+                                </select>
+                                <div class="form-text">Select the desired output format for your image.</div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary" id="convertBtn" disabled>
+                                        <i class="fas fa-exchange-alt me-2"></i>Convert Image
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn" disabled>
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="result-card mb-4 d-none" id="resultCard">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Converted Image</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="image-preview-container">
+                                    <img id="convertedImage" class="img-fluid rounded" alt="Converted Preview">
+                                    <div class="image-info mt-2">
+                                        <small class="text-muted">Size: <span id="convertedSize">0 KB</span></small>
+                                        <small class="text-muted ms-3">Dimensions: <span id="convertedDimensions">0 x 0</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-success" id="downloadBtn">
+                                    <i class="fas fa-download me-2"></i>Download Image
+                                </button>
+                                <div class="text-muted">
+                                    <small>Format: <span id="convertedFormat">JPEG</span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Image Format Converter</h5>
+                            <p class="card-text">
+                                Our Image Format Converter allows you to:
+                            </p>
+                            <ul>
+                                <li>Convert between popular image formats</li>
+                                <li>Support for JPG, PNG, GIF, WebP, and more</li>
+                                <li>Preview before and after conversion</li>
+                                <li>Download converted image instantly</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for web developers, designers, and anyone needing to convert images.
+                                The tool provides high-quality conversion with multiple format options.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/image-tools/image-to-base64.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Image to Base64
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-resizer.html">
+                                    <i class="fas fa-expand-arrows-alt me-2"></i>Image Resizer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-compressor.html">
+                                    <i class="fas fa-compress-alt me-2"></i>Image Compressor
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imageSize = document.getElementById('imageSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const formatSelect = document.getElementById('formatSelect');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultCard = document.getElementById('resultCard');
+            const convertedImage = document.getElementById('convertedImage');
+            const convertedSize = document.getElementById('convertedSize');
+            const convertedDimensions = document.getElementById('convertedDimensions');
+            const convertedFormat = document.getElementById('convertedFormat');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            let originalImage = null;
+            let originalWidth = 0;
+            let originalHeight = 0;
+
+            // Handle image selection
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    if (!file.type.startsWith('image/')) {
+                        alert('Please select a valid image file.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Validate file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('Image size should be less than 10MB.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreviewContainer.classList.remove('d-none');
+                        
+                        // Update image info
+                        imageSize.textContent = formatFileSize(file.size);
+                        const img = new Image();
+                        img.onload = () => {
+                            originalImage = img;
+                            originalWidth = img.width;
+                            originalHeight = img.height;
+                            imageDimensions.textContent = `${img.width} x ${img.height}`;
+                            
+                            // Enable buttons
+                            convertBtn.disabled = false;
+                            clearBtn.disabled = false;
+                            convertBtn.classList.add('btn-pulse');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Handle conversion
+            convertBtn.addEventListener('click', () => {
+                if (!originalImage) return;
+
+                // Add loading state
+                convertBtn.disabled = true;
+                convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Converting...';
+                
+                // Create canvas for conversion
+                const canvas = document.createElement('canvas');
+                canvas.width = originalWidth;
+                canvas.height = originalHeight;
+                const ctx = canvas.getContext('2d');
+                
+                // Draw image
+                ctx.drawImage(originalImage, 0, 0);
+                
+                // Convert to selected format
+                const format = formatSelect.value;
+                const mimeType = `image/${format}`;
+                canvas.toBlob((blob) => {
+                    // Update preview
+                    convertedImage.src = canvas.toDataURL(mimeType);
+                    convertedSize.textContent = formatFileSize(blob.size);
+                    convertedDimensions.textContent = `${originalWidth} x ${originalHeight}`;
+                    convertedFormat.textContent = format.toUpperCase();
+                    
+                    // Show result card
+                    resultCard.classList.remove('d-none');
+                    
+                    // Reset button state
+                    convertBtn.disabled = false;
+                    convertBtn.innerHTML = '<i class="fas fa-exchange-alt me-2"></i>Convert Image';
+                }, mimeType);
+            });
+
+            // Handle download
+            downloadBtn.addEventListener('click', () => {
+                const format = formatSelect.value;
+                const link = document.createElement('a');
+                link.download = `converted-image.${format}`;
+                link.href = convertedImage.src;
+                link.click();
+            });
+
+            // Clear all with animation
+            clearBtn.addEventListener('click', () => {
+                imageInput.value = '';
+                imagePreviewContainer.classList.add('d-none');
+                resultCard.classList.add('d-none');
+                convertBtn.disabled = true;
+                clearBtn.disabled = true;
+                convertBtn.classList.remove('btn-pulse');
+            });
+        });
+    </script>
+</body>
+</html> 

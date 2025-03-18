@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatter - Format Text Online | MultiTools</title>
+    <meta name="description" content="Free online text formatter. Format text with options for alignment, line spacing, indentation, bullet points, numbered lists, and more.">
+    <meta name="keywords" content="text formatter, text alignment, line spacing, indentation, bullet points, numbered lists, text formatting, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text Formatter - Format Text Online">
+    <meta property="og:description" content="Free online text formatter. Format text with options for alignment, line spacing, indentation, bullet points, numbered lists, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-formatter.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text Formatter</h1>
+                    <p class="lead mb-4">Format your text with options for alignment, line spacing, indentation, bullet points, numbered lists, and more.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Text Input -->
+                            <div class="text-input-area">
+                                <textarea id="inputText" class="form-control" placeholder="Enter your text here..."></textarea>
+                            </div>
+
+                            <!-- Formatting Options -->
+                            <div class="formatting-options">
+                                <!-- Text Alignment -->
+                                <div class="format-section">
+                                    <h6 class="section-title">Text Alignment</h6>
+                                    <div class="alignment-buttons">
+                                        <button class="btn btn-outline-secondary" data-align="left">
+                                            <i class="fas fa-align-left"></i>
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-align="center">
+                                            <i class="fas fa-align-center"></i>
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-align="right">
+                                            <i class="fas fa-align-right"></i>
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-align="justify">
+                                            <i class="fas fa-align-justify"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Line Spacing -->
+                                <div class="format-section">
+                                    <h6 class="section-title">Line Spacing</h6>
+                                    <div class="spacing-buttons">
+                                        <button class="btn btn-outline-secondary" data-spacing="1">
+                                            <i class="fas fa-text-height"></i> 1.0
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-spacing="1.5">
+                                            <i class="fas fa-text-height"></i> 1.5
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-spacing="2">
+                                            <i class="fas fa-text-height"></i> 2.0
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Lists -->
+                                <div class="format-section">
+                                    <h6 class="section-title">Lists</h6>
+                                    <div class="list-buttons">
+                                        <button class="btn btn-outline-secondary" data-list="bullet">
+                                            <i class="fas fa-list-ul"></i> Bullet List
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-list="number">
+                                            <i class="fas fa-list-ol"></i> Numbered List
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-list="remove">
+                                            <i class="fas fa-list"></i> Remove List
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Indentation -->
+                                <div class="format-section">
+                                    <h6 class="section-title">Indentation</h6>
+                                    <div class="indent-buttons">
+                                        <button class="btn btn-outline-secondary" data-indent="increase">
+                                            <i class="fas fa-indent"></i> Increase
+                                        </button>
+                                        <button class="btn btn-outline-secondary" data-indent="decrease">
+                                            <i class="fas fa-outdent"></i> Decrease
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Text Statistics -->
+                            <div class="text-stats">
+                                <div class="stat-box">
+                                    <div class="stat-label">Characters</div>
+                                    <div class="stat-value" id="charCount">0</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Words</div>
+                                    <div class="stat-value" id="wordCount">0</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Lines</div>
+                                    <div class="stat-value" id="lineCount">0</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Paragraphs</div>
+                                    <div class="stat-value" id="paragraphCount">0</div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="formatBtn">
+                                    <i class="fas fa-magic me-2"></i>Format Text
+                                </button>
+                                <button class="btn btn-outline-secondary" id="clearBtn">
+                                    <i class="fas fa-trash me-2"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text Formatting</h5>
+                            <p class="card-text">
+                                Our Text Formatter helps you:
+                            </p>
+                            <ul>
+                                <li>Align text left, center, right, or justify</li>
+                                <li>Adjust line spacing for better readability</li>
+                                <li>Create bullet and numbered lists</li>
+                                <li>Control text indentation</li>
+                                <li>Track text statistics</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for writers, editors, and anyone working with text.
+                                The tool helps you format text quickly and professionally.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-case-converter.html">
+                                    <i class="fas fa-text-height me-2"></i>Text Case Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-encoder.html">
+                                    <i class="fas fa-code me-2"></i>Text Encoder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-diff.html">
+                                    <i class="fas fa-code-branch me-2"></i>Text Diff
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputText = document.getElementById('inputText');
+            const formatBtn = document.getElementById('formatBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const charCount = document.getElementById('charCount');
+            const wordCount = document.getElementById('wordCount');
+            const lineCount = document.getElementById('lineCount');
+            const paragraphCount = document.getElementById('paragraphCount');
+
+            let currentAlignment = 'left';
+            let currentSpacing = '1';
+            let currentIndent = 0;
+
+            // Update text statistics
+            function updateStats(text) {
+                charCount.textContent = text.length;
+                wordCount.textContent = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+                lineCount.textContent = text.split('\n').length;
+                paragraphCount.textContent = text.split('\n\n').filter(para => para.trim().length > 0).length;
+            }
+
+            // Format text
+            function formatText(text, options) {
+                let formattedText = text;
+
+                // Apply alignment
+                switch (options.alignment) {
+                    case 'center':
+                        formattedText = formattedText.split('\n').map(line => 
+                            line.trim().padStart((80 + line.trim().length) / 2)
+                        ).join('\n');
+                        break;
+                    case 'right':
+                        formattedText = formattedText.split('\n').map(line => 
+                            line.trim().padStart(80)
+                        ).join('\n');
+                        break;
+                    case 'justify':
+                        formattedText = formattedText.split('\n').map(line => {
+                            const words = line.trim().split(' ');
+                            if (words.length <= 1) return line;
+                            const spaces = 80 - words.join('').length;
+                            const spacePerGap = spaces / (words.length - 1);
+                            return words.join(' '.repeat(Math.floor(spacePerGap)));
+                        }).join('\n');
+                        break;
+                }
+
+                // Apply line spacing
+                if (options.spacing !== '1') {
+                    formattedText = formattedText.split('\n').join('\n'.repeat(parseInt(options.spacing)));
+                }
+
+                // Apply indentation
+                if (options.indent > 0) {
+                    formattedText = formattedText.split('\n').map(line => 
+                        '    '.repeat(options.indent) + line
+                    ).join('\n');
+                }
+
+                // Apply lists
+                if (options.list === 'bullet') {
+                    formattedText = formattedText.split('\n').map(line => 
+                        line.trim() ? '• ' + line.trim() : line
+                    ).join('\n');
+                } else if (options.list === 'number') {
+                    let counter = 1;
+                    formattedText = formattedText.split('\n').map(line => 
+                        line.trim() ? counter++ + '. ' + line.trim() : line
+                    ).join('\n');
+                } else if (options.list === 'remove') {
+                    formattedText = formattedText.split('\n').map(line => 
+                        line.replace(/^[•\d.]\s+/, '')
+                    ).join('\n');
+                }
+
+                return formattedText;
+            }
+
+            // Alignment buttons
+            document.querySelectorAll('.alignment-buttons button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.alignment-buttons button').forEach(btn => 
+                        btn.classList.remove('active')
+                    );
+                    button.classList.add('active');
+                    currentAlignment = button.dataset.align;
+                });
+            });
+
+            // Spacing buttons
+            document.querySelectorAll('.spacing-buttons button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.spacing-buttons button').forEach(btn => 
+                        btn.classList.remove('active')
+                    );
+                    button.classList.add('active');
+                    currentSpacing = button.dataset.spacing;
+                });
+            });
+
+            // List buttons
+            document.querySelectorAll('.list-buttons button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.list-buttons button').forEach(btn => 
+                        btn.classList.remove('active')
+                    );
+                    button.classList.add('active');
+                });
+            });
+
+            // Indent buttons
+            document.querySelectorAll('.indent-buttons button').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (button.dataset.indent === 'increase') {
+                        currentIndent = Math.min(currentIndent + 1, 5);
+                    } else {
+                        currentIndent = Math.max(currentIndent - 1, 0);
+                    }
+                });
+            });
+
+            // Input text change
+            inputText.addEventListener('input', () => {
+                updateStats(inputText.value);
+            });
+
+            // Format button click
+            formatBtn.addEventListener('click', () => {
+                const text = inputText.value;
+                if (text.trim()) {
+                    const options = {
+                        alignment: currentAlignment,
+                        spacing: currentSpacing,
+                        indent: currentIndent,
+                        list: document.querySelector('.list-buttons button.active')?.dataset.list || 'none'
+                    };
+                    inputText.value = formatText(text, options);
+                }
+            });
+
+            // Clear button click
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                updateStats('');
+                document.querySelectorAll('.formatting-options button').forEach(btn => 
+                    btn.classList.remove('active')
+                );
+                currentAlignment = 'left';
+                currentSpacing = '1';
+                currentIndent = 0;
+            });
+
+            // Initialize
+            updateStats('');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PNG Converter - Convert Images to PNG Format Online | MultiTools</title>
+    <meta name="description" content="Free online image to PNG converter. Convert any image format to PNG with transparency support. Fast, easy to use, and no registration required.">
+    <meta name="keywords" content="image to png, convert to png, png converter, image converter, online image converter, free png converter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image to PNG Converter - Convert Images to PNG Format Online">
+    <meta property="og:description" content="Free online image to PNG converter. Convert any image format to PNG with transparency support. Fast, easy to use, and no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/image-tools/image-to-png.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="image-tool-container p-4">
+                    <h1 class="mb-4">Image to PNG Converter</h1>
+                    <p class="lead mb-4">Convert your images to PNG format with transparency support. Fast, free, and easy to use.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageInput" class="form-label">Select Image:</label>
+                                <div class="custom-file-input">
+                                    <input type="file" class="form-control" id="imageInput" accept="image/*">
+                                    <label for="imageInput" class="file-input-label">
+                                        <i class="fas fa-cloud-upload-alt me-2"></i>Choose Image
+                                    </label>
+                                </div>
+                                <div class="form-text">Supported formats: JPG, JPEG, GIF, BMP, WebP, etc.</div>
+                            </div>
+                            <div class="mb-3">
+                                <div id="previewContainer" class="preview-container text-center d-none">
+                                    <img id="imagePreview" class="img-fluid mb-3" alt="Image Preview">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button class="btn btn-primary" id="convertBtn">
+                                            <i class="fas fa-exchange-alt me-2"></i>Convert to PNG
+                                        </button>
+                                        <button class="btn btn-outline-secondary" id="clearBtn">
+                                            <i class="fas fa-trash me-2"></i>Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="result-card mb-4 d-none" id="resultCard">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Converted PNG Image</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img id="convertedImage" class="img-fluid mb-3" alt="Converted PNG Image">
+                                <a id="downloadBtn" class="btn btn-success" download="converted-image.png">
+                                    <i class="fas fa-download me-2"></i>Download PNG Image
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About PNG Converter</h5>
+                            <p class="card-text">
+                                Our PNG Converter allows you to:
+                            </p>
+                            <ul>
+                                <li>Convert any image format to PNG</li>
+                                <li>Maintain image quality</li>
+                                <li>Support transparency</li>
+                                <li>Instant download</li>
+                            </ul>
+                            <p class="card-text">
+                                PNG format is perfect for images that require transparency or high quality.
+                                It's widely used for web graphics, logos, and screenshots.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/image-tools/image-to-jpg.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Image to JPG
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-resizer.html">
+                                    <i class="fas fa-expand-arrows-alt me-2"></i>Image Resizer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-compressor.html">
+                                    <i class="fas fa-compress-arrows-alt me-2"></i>Image Compressor
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageInput = document.getElementById('imageInput');
+            const previewContainer = document.getElementById('previewContainer');
+            const imagePreview = document.getElementById('imagePreview');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultCard = document.getElementById('resultCard');
+            const convertedImage = document.getElementById('convertedImage');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            let originalImage = null;
+
+            // Handle image selection
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        originalImage = new Image();
+                        originalImage.src = e.target.result;
+                        originalImage.onload = () => {
+                            imagePreview.src = e.target.result;
+                            previewContainer.classList.remove('d-none');
+                            resultCard.classList.add('d-none');
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Convert image
+            convertBtn.addEventListener('click', () => {
+                if (!originalImage) return;
+
+                const canvas = document.createElement('canvas');
+                canvas.width = originalImage.width;
+                canvas.height = originalImage.height;
+                const ctx = canvas.getContext('2d');
+
+                // Draw image
+                ctx.drawImage(originalImage, 0, 0);
+                const pngData = canvas.toDataURL('image/png');
+                
+                // Display converted image
+                convertedImage.src = pngData;
+                downloadBtn.href = pngData;
+                resultCard.classList.remove('d-none');
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                imageInput.value = '';
+                previewContainer.classList.add('d-none');
+                resultCard.classList.add('d-none');
+                originalImage = null;
+            });
+        });
+    </script>
+</body>
+</html> 

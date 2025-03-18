@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Shades - Generate Color Variations Online | MultiTools</title>
+    <meta name="description" content="Free online color shades generator. Create different shades and tints of any color, perfect for creating monochromatic color schemes and understanding color variations.">
+    <meta name="keywords" content="color shades, color tints, monochromatic colors, color variations, color generator, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Shades - Generate Color Variations Online">
+    <meta property="og:description" content="Free online color shades generator. Create different shades and tints of any color, perfect for creating monochromatic color schemes and understanding color variations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-shades.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Shades</h1>
+                    <p class="lead mb-4">Generate different shades and tints of any color, perfect for creating monochromatic color schemes and understanding color variations.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Base Color Selection -->
+                            <div class="base-color mb-4">
+                                <h5 class="mb-3">Base Color</h5>
+                                <div class="input-group">
+                                    <input type="color" class="form-control form-control-color" id="baseColor" value="#ff0000">
+                                    <input type="text" class="form-control" id="baseColorHex" value="#ff0000" readonly>
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteColorBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Variations -->
+                            <div class="color-variations mb-4">
+                                <h5 class="mb-3">Color Variations</h5>
+                                <div class="variations-container" id="variationsContainer">
+                                    <!-- Color variations will be added here dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info mb-4">
+                                <h5 class="mb-3">Color Information</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">RGB</label>
+                                            <input type="text" class="form-control" id="rgbValue" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">HSL</label>
+                                            <input type="text" class="form-control" id="hslValue" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">CMYK</label>
+                                            <input type="text" class="form-control" id="cmykValue" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Color Palette
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Shades</h5>
+                            <p class="card-text">
+                                Our Color Shades Generator helps you:
+                            </p>
+                            <ul>
+                                <li>Generate different shades and tints of any color</li>
+                                <li>Create monochromatic color schemes</li>
+                                <li>Understand color variations</li>
+                                <li>Get color information in multiple formats</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for designers, developers, and anyone working with color.
+                                The tool helps you create harmonious color variations for your designs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-palette.html">
+                                    <i class="fas fa-palette me-2"></i>Color Palette
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const baseColor = document.getElementById('baseColor');
+            const baseColorHex = document.getElementById('baseColorHex');
+            const pasteColorBtn = document.getElementById('pasteColorBtn');
+            const variationsContainer = document.getElementById('variationsContainer');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const cmykValue = document.getElementById('cmykValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            // Convert hex to RGB
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            // Convert RGB to HSL
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            // Convert RGB to CMYK
+            function rgbToCmyk(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const k = 1 - Math.max(r, g, b);
+                const c = (1 - r - k) / (1 - k) || 0;
+                const m = (1 - g - k) / (1 - k) || 0;
+                const y = (1 - b - k) / (1 - k) || 0;
+                return {
+                    c: Math.round(c * 100),
+                    m: Math.round(m * 100),
+                    y: Math.round(y * 100),
+                    k: Math.round(k * 100)
+                };
+            }
+
+            // Generate shades and tints
+            function generateVariations(hex) {
+                const rgb = hexToRgb(hex);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+
+                // Update color information
+                rgbValue.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                hslValue.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+                cmykValue.value = `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`;
+
+                // Generate variations
+                variationsContainer.innerHTML = '';
+                const variations = [
+                    { name: 'Shade 900', lightness: 10 },
+                    { name: 'Shade 800', lightness: 20 },
+                    { name: 'Shade 700', lightness: 30 },
+                    { name: 'Shade 600', lightness: 40 },
+                    { name: 'Shade 500', lightness: 50 },
+                    { name: 'Shade 400', lightness: 60 },
+                    { name: 'Shade 300', lightness: 70 },
+                    { name: 'Shade 200', lightness: 80 },
+                    { name: 'Shade 100', lightness: 90 }
+                ];
+
+                variations.forEach(variation => {
+                    const variationHsl = { ...hsl, l: variation.lightness };
+                    const variationHex = hslToHex(variationHsl.h, variationHsl.s, variationHsl.l);
+                    
+                    const variationElement = document.createElement('div');
+                    variationElement.className = 'color-variation';
+                    variationElement.innerHTML = `
+                        <div class="variation-color" style="background-color: ${variationHex}"></div>
+                        <div class="variation-info">
+                            <span class="variation-name">${variation.name}</span>
+                            <span class="variation-hex">${variationHex}</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary copy-variation">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    `;
+
+                    const copyBtn = variationElement.querySelector('.copy-variation');
+                    copyBtn.addEventListener('click', () => {
+                        navigator.clipboard.writeText(variationHex)
+                            .then(() => {
+                                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                                setTimeout(() => {
+                                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            })
+                            .catch(err => {
+                                console.error('Failed to copy:', err);
+                                copyBtn.innerHTML = '<i class="fas fa-times"></i>';
+                                setTimeout(() => {
+                                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            });
+                    });
+
+                    variationsContainer.appendChild(variationElement);
+                });
+            }
+
+            // Convert HSL to Hex
+            function hslToHex(h, s, l) {
+                l /= 100;
+                const a = s * Math.min(l, 1 - l) / 100;
+                const f = n => {
+                    const k = (n + h / 30) % 12;
+                    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                    return Math.round(255 * color).toString(16).padStart(2, '0');
+                };
+                return `#${f(0)}${f(8)}${f(4)}`;
+            }
+
+            // Base color change
+            baseColor.addEventListener('input', () => {
+                baseColorHex.value = baseColor.value;
+                generateVariations(baseColor.value);
+            });
+
+            // Hex input change
+            baseColorHex.addEventListener('input', () => {
+                const hex = baseColorHex.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    baseColor.value = hex;
+                    generateVariations(hex);
+                }
+            });
+
+            // Paste color
+            pasteColorBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    if (/^#[0-9A-F]{6}$/i.test(text)) {
+                        baseColor.value = text;
+                        baseColorHex.value = text;
+                        generateVariations(text);
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Copy palette
+            copyBtn.addEventListener('click', () => {
+                const palette = Array.from(variationsContainer.querySelectorAll('.variation-hex'))
+                    .map(el => el.textContent)
+                    .join('\n');
+                
+                navigator.clipboard.writeText(palette)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Color Palette';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Color Palette';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                baseColor.value = '#ff0000';
+                baseColorHex.value = '#ff0000';
+                generateVariations('#ff0000');
+            });
+
+            // Initialize
+            generateVariations('#ff0000');
+        });
+    </script>
+</body>
+</html> 

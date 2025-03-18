@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Contrast - Check Color Accessibility Online | MultiTools</title>
+    <meta name="description" content="Free online color contrast checker. Analyze and ensure proper contrast ratios between colors for accessibility and readability.">
+    <meta name="keywords" content="color contrast, accessibility, WCAG, color checker, contrast ratio, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Contrast - Check Color Accessibility Online">
+    <meta property="og:description" content="Free online color contrast checker. Analyze and ensure proper contrast ratios between colors for accessibility and readability.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-contrast.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Contrast</h1>
+                    <p class="lead mb-4">Check and ensure proper contrast ratios between colors for accessibility and readability.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Color Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Select Colors:</label>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="foreground">
+                                        <i class="fas fa-paint-brush me-2"></i>Foreground Color
+                                    </button>
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="background">
+                                        <i class="fas fa-paint-brush me-2"></i>Background Color
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Input -->
+                            <div class="mb-4">
+                                <label class="form-label">Color Value:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="colorInput" placeholder="#000000">
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Enter a color code or use the color picker</div>
+                            </div>
+
+                            <!-- Color Adjustments -->
+                            <div class="mb-4">
+                                <label class="form-label">Adjust Color:</label>
+                                <div class="color-sliders">
+                                    <div class="color-slider">
+                                        <label for="hueSlider">Hue</label>
+                                        <input type="range" class="form-range" id="hueSlider" min="0" max="360" value="0">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="saturationSlider">Saturation</label>
+                                        <input type="range" class="form-range" id="saturationSlider" min="0" max="100" value="100">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="lightnessSlider">Lightness</label>
+                                        <input type="range" class="form-range" id="lightnessSlider" min="0" max="100" value="50">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Preview -->
+                            <div class="color-preview mb-4">
+                                <div class="preview-container">
+                                    <div class="preview-box" id="foregroundPreview" style="background-color: #000000">
+                                        <div class="preview-label">Foreground</div>
+                                    </div>
+                                    <div class="preview-box" id="backgroundPreview" style="background-color: #ffffff">
+                                        <div class="preview-label">Background</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contrast Analysis -->
+                            <div class="contrast-analysis mb-4">
+                                <h5 class="mb-3">Contrast Analysis</h5>
+                                <div class="analysis-item">
+                                    <strong>Contrast Ratio:</strong>
+                                    <span id="contrastRatio">0:1</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>WCAG 2.0 Level:</strong>
+                                    <span id="wcagLevel">Not Available</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>Accessibility Score:</strong>
+                                    <span id="accessibilityScore">Poor</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contrast Scale -->
+                            <div class="contrast-scale mb-4">
+                                <h5 class="mb-3">Contrast Scale</h5>
+                                <div class="scale-container">
+                                    <div class="scale-label">Poor</div>
+                                    <div class="scale-bar">
+                                        <div class="scale-marker" id="contrastMarker"></div>
+                                    </div>
+                                    <div class="scale-label">Excellent</div>
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info">
+                                <div class="color-value" id="hexValue">
+                                    <strong>HEX:</strong> <span>#000000</span>
+                                </div>
+                                <div class="color-value" id="rgbValue">
+                                    <strong>RGB:</strong> <span>rgb(0, 0, 0)</span>
+                                </div>
+                                <div class="color-value" id="hslValue">
+                                    <strong>HSL:</strong> <span>hsl(0, 0%, 0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Colors
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Contrast</h5>
+                            <p class="card-text">
+                                Our Color Contrast Checker helps you:
+                            </p>
+                            <ul>
+                                <li>Check contrast ratios for accessibility</li>
+                                <li>Meet WCAG 2.0 guidelines</li>
+                                <li>Ensure text readability</li>
+                                <li>Create accessible color combinations</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for designers, developers, and content creators.
+                                The tool helps you create accessible and readable color combinations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-palette.html">
+                                    <i class="fas fa-palette me-2"></i>Color Palette
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorInput = document.getElementById('colorInput');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const foregroundPreview = document.getElementById('foregroundPreview');
+            const backgroundPreview = document.getElementById('backgroundPreview');
+            const hexValue = document.getElementById('hexValue');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const colorButtons = document.querySelectorAll('[data-color]');
+            const hueSlider = document.getElementById('hueSlider');
+            const saturationSlider = document.getElementById('saturationSlider');
+            const lightnessSlider = document.getElementById('lightnessSlider');
+            const contrastRatio = document.getElementById('contrastRatio');
+            const wcagLevel = document.getElementById('wcagLevel');
+            const accessibilityScore = document.getElementById('accessibilityScore');
+            const contrastMarker = document.getElementById('contrastMarker');
+
+            let selectedColor = 'foreground';
+            let foregroundColor = '#000000';
+            let backgroundColor = '#ffffff';
+
+            // Handle color selection
+            colorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    colorButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedColor = button.dataset.color;
+                    updateInputValue();
+                });
+            });
+
+            // Update input value based on selected color
+            function updateInputValue() {
+                colorInput.value = selectedColor === 'foreground' ? foregroundColor : backgroundColor;
+                updateSliders(colorInput.value);
+            }
+
+            // Handle color input
+            colorInput.addEventListener('input', () => {
+                const value = colorInput.value.trim();
+                if (isValidHexColor(value)) {
+                    if (selectedColor === 'foreground') {
+                        foregroundColor = value;
+                        foregroundPreview.style.backgroundColor = value;
+                    } else {
+                        backgroundColor = value;
+                        backgroundPreview.style.backgroundColor = value;
+                    }
+                    updateAnalysis();
+                }
+            });
+
+            // Handle paste button
+            pasteBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    colorInput.value = text.trim();
+                    if (isValidHexColor(text.trim())) {
+                        if (selectedColor === 'foreground') {
+                            foregroundColor = text.trim();
+                            foregroundPreview.style.backgroundColor = text.trim();
+                        } else {
+                            backgroundColor = text.trim();
+                            backgroundPreview.style.backgroundColor = text.trim();
+                        }
+                        updateAnalysis();
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Handle color sliders
+            hueSlider.addEventListener('input', updateColorFromSliders);
+            saturationSlider.addEventListener('input', updateColorFromSliders);
+            lightnessSlider.addEventListener('input', updateColorFromSliders);
+
+            // Update color from sliders
+            function updateColorFromSliders() {
+                const h = hueSlider.value;
+                const s = saturationSlider.value;
+                const l = lightnessSlider.value;
+                const color = hslToHex(h, s, l);
+                
+                if (selectedColor === 'foreground') {
+                    foregroundColor = color;
+                    foregroundPreview.style.backgroundColor = color;
+                } else {
+                    backgroundColor = color;
+                    backgroundPreview.style.backgroundColor = color;
+                }
+                
+                colorInput.value = color;
+                updateAnalysis();
+            }
+
+            // Update sliders from color
+            function updateSliders(color) {
+                const rgb = hexToRgb(color);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                hueSlider.value = hsl.h;
+                saturationSlider.value = hsl.s;
+                lightnessSlider.value = hsl.l;
+            }
+
+            // Update contrast analysis
+            function updateAnalysis() {
+                const foregroundRgb = hexToRgb(foregroundColor);
+                const backgroundRgb = hexToRgb(backgroundColor);
+                const ratio = calculateContrastRatio(foregroundRgb, backgroundRgb);
+
+                // Update contrast ratio
+                contrastRatio.textContent = ratio.toFixed(2) + ':1';
+                contrastRatio.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    Math.min((ratio / 21) * 100, 100) + '%';
+
+                // Update WCAG level
+                const level = getWCAGLevel(ratio);
+                wcagLevel.textContent = level;
+                wcagLevel.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    (level === 'AAA' ? 100 : level === 'AA' ? 75 : level === 'A' ? 50 : 25) + '%';
+
+                // Update accessibility score
+                const score = getAccessibilityScore(ratio);
+                accessibilityScore.textContent = score;
+                accessibilityScore.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    (score === 'Excellent' ? 100 : score === 'Good' ? 75 : score === 'Fair' ? 50 : 25) + '%';
+
+                // Update contrast marker
+                updateContrastMarker(ratio);
+            }
+
+            // Calculate contrast ratio
+            function calculateContrastRatio(color1, color2) {
+                const l1 = getLuminance(color1);
+                const l2 = getLuminance(color2);
+                const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+                return ratio;
+            }
+
+            // Calculate relative luminance
+            function getLuminance(rgb) {
+                const [r, g, b] = [rgb.r / 255, rgb.g / 255, rgb.b / 255].map(val => {
+                    return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+                });
+                return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            }
+
+            // Get WCAG level
+            function getWCAGLevel(ratio) {
+                if (ratio >= 7) return 'AAA';
+                if (ratio >= 4.5) return 'AA';
+                if (ratio >= 3) return 'A';
+                return 'Fail';
+            }
+
+            // Get accessibility score
+            function getAccessibilityScore(ratio) {
+                if (ratio >= 7) return 'Excellent';
+                if (ratio >= 4.5) return 'Good';
+                if (ratio >= 3) return 'Fair';
+                return 'Poor';
+            }
+
+            // Update contrast marker position
+            function updateContrastMarker(ratio) {
+                const position = Math.min((ratio / 21) * 100, 100);
+                contrastMarker.style.left = position + '%';
+            }
+
+            // Copy colors
+            copyBtn.addEventListener('click', () => {
+                const text = `Foreground: ${foregroundColor}\nBackground: ${backgroundColor}`;
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                colorInput.value = '';
+                foregroundColor = '#000000';
+                backgroundColor = '#ffffff';
+                foregroundPreview.style.backgroundColor = foregroundColor;
+                backgroundPreview.style.backgroundColor = backgroundColor;
+                updateSliders(foregroundColor);
+                updateAnalysis();
+            });
+
+            // Color conversion functions
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            function hslToHex(h, s, l) {
+                s /= 100;
+                l /= 100;
+                const c = (1 - Math.abs(2 * l - 1)) * s;
+                const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+                const rgb = [0, 0, 0];
+                let r, g, b;
+
+                if (h >= 0 && h < 60) {
+                    rgb[0] = c; rgb[1] = x; rgb[2] = 0;
+                } else if (h >= 60 && h < 120) {
+                    rgb[0] = x; rgb[1] = c; rgb[2] = 0;
+                } else if (h >= 120 && h < 180) {
+                    rgb[0] = 0; rgb[1] = c; rgb[2] = x;
+                } else if (h >= 180 && h < 240) {
+                    rgb[0] = 0; rgb[1] = x; rgb[2] = c;
+                } else if (h >= 240 && h < 300) {
+                    rgb[0] = x; rgb[1] = 0; rgb[2] = c;
+                } else if (h >= 300 && h < 360) {
+                    rgb[0] = c; rgb[1] = 0; rgb[2] = x;
+                }
+
+                const m = l - c / 2;
+                rgb[0] = Math.round((rgb[0] + m) * 255);
+                rgb[1] = Math.round((rgb[1] + m) * 255);
+                rgb[2] = Math.round((rgb[2] + m) * 255);
+
+                return `#${rgb.map(x => {
+                    const hex = x.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('')}`;
+            }
+
+            // Set initial color button as active
+            colorButtons[0].click();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Names - Find Color Names Online | MultiTools</title>
+    <meta name="description" content="Free online color names finder. Find the perfect name for any color, including common color names, CSS color names, and descriptive color names.">
+    <meta name="keywords" content="color names, CSS color names, color finder, color naming, color identification, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Names - Find Color Names Online">
+    <meta property="og:description" content="Free online color names finder. Find the perfect name for any color, including common color names, CSS color names, and descriptive color names.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-names.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Names</h1>
+                    <p class="lead mb-4">Find the perfect name for any color, including common color names, CSS color names, and descriptive color names.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Color Selection -->
+                            <div class="color-selection mb-4">
+                                <h5 class="mb-3">Select Color</h5>
+                                <div class="input-group">
+                                    <input type="color" class="form-control form-control-color" id="colorPicker" value="#ff0000">
+                                    <input type="text" class="form-control" id="colorHex" value="#ff0000" readonly>
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteColorBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Preview -->
+                            <div class="color-preview mb-4">
+                                <div class="preview-container">
+                                    <div class="color-box" id="colorPreview">
+                                        <div class="color-overlay">
+                                            <div class="color-info">
+                                                <span id="colorName">Red</span>
+                                                <span id="colorHexDisplay">#ff0000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Names -->
+                            <div class="color-names mb-4">
+                                <h5 class="mb-3">Color Names</h5>
+                                <div class="names-container" id="namesContainer">
+                                    <!-- Color names will be added here dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info mb-4">
+                                <h5 class="mb-3">Color Information</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">RGB</label>
+                                            <input type="text" class="form-control" id="rgbValue" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">HSL</label>
+                                            <input type="text" class="form-control" id="hslValue" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <label class="form-label">CMYK</label>
+                                            <input type="text" class="form-control" id="cmykValue" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Color Name
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Names</h5>
+                            <p class="card-text">
+                                Our Color Names Finder helps you:
+                            </p>
+                            <ul>
+                                <li>Find the perfect name for any color</li>
+                                <li>Discover CSS color names</li>
+                                <li>Get descriptive color names</li>
+                                <li>Understand color relationships</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for designers, developers, and anyone working with color.
+                                The tool helps you identify and name colors accurately.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-palette.html">
+                                    <i class="fas fa-palette me-2"></i>Color Palette
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorPicker = document.getElementById('colorPicker');
+            const colorHex = document.getElementById('colorHex');
+            const pasteColorBtn = document.getElementById('pasteColorBtn');
+            const colorPreview = document.getElementById('colorPreview');
+            const colorName = document.getElementById('colorName');
+            const colorHexDisplay = document.getElementById('colorHexDisplay');
+            const namesContainer = document.getElementById('namesContainer');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const cmykValue = document.getElementById('cmykValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            // CSS Color Names
+            const cssColors = {
+                '#ff0000': 'Red',
+                '#00ff00': 'Lime',
+                '#0000ff': 'Blue',
+                '#ffff00': 'Yellow',
+                '#ff00ff': 'Magenta',
+                '#00ffff': 'Cyan',
+                '#000000': 'Black',
+                '#ffffff': 'White',
+                '#808080': 'Gray',
+                '#800000': 'Maroon',
+                '#008000': 'Green',
+                '#000080': 'Navy',
+                '#808000': 'Olive',
+                '#800080': 'Purple',
+                '#008080': 'Teal',
+                '#ffa500': 'Orange',
+                '#a52a2a': 'Brown',
+                '#c0c0c0': 'Silver',
+                '#ffc0cb': 'Pink',
+                '#dda0dd': 'Plum',
+                '#f0e68c': 'Khaki',
+                '#e6e6fa': 'Lavender',
+                '#98fb98': 'Pale Green',
+                '#87ceeb': 'Sky Blue',
+                '#dda0dd': 'Plum',
+                '#b8860b': 'Dark Goldenrod',
+                '#ff69b4': 'Hot Pink',
+                '#cd853f': 'Peru',
+                '#daa520': 'Goldenrod',
+                '#adff2f': 'Green Yellow',
+                '#ff4500': 'Orange Red',
+                '#ffd700': 'Gold',
+                '#ff6347': 'Tomato',
+                '#ff7f50': 'Coral',
+                '#ff8c00': 'Dark Orange',
+                '#ffa07a': 'Light Salmon',
+                '#ffb6c1': 'Light Pink',
+                '#ffdab9': 'Peach Puff',
+                '#f0fff0': 'Honeydew',
+                '#f5f5f5': 'White Smoke',
+                '#f8f8ff': 'Ghost White',
+                '#fa8072': 'Salmon',
+                '#faf0e6': 'Linen',
+                '#fafad2': 'Light Goldenrod Yellow',
+                '#ffefd5': 'Papaya Whip',
+                '#fff0f5': 'Lavender Blush',
+                '#fff5ee': 'Seashell',
+                '#fff8dc': 'Cornsilk',
+                '#fffacd': 'Lemon Chiffon',
+                '#ffdead': 'Navajo White',
+                '#ffe4b5': 'Moccasin',
+                '#ffe4c4': 'Bisque',
+                '#ffe4e1': 'Misty Rose',
+                '#ffebcd': 'Blanched Almond',
+                '#ffefd5': 'Papaya Whip',
+                '#fff0f5': 'Lavender Blush',
+                '#fff5ee': 'Seashell',
+                '#fff8dc': 'Cornsilk',
+                '#fffacd': 'Lemon Chiffon',
+                '#ffdead': 'Navajo White',
+                '#ffe4b5': 'Moccasin',
+                '#ffe4c4': 'Bisque',
+                '#ffe4e1': 'Misty Rose',
+                '#ffebcd': 'Blanched Almond'
+            };
+
+            // Convert hex to RGB
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            // Convert RGB to HSL
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            // Convert RGB to CMYK
+            function rgbToCmyk(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const k = 1 - Math.max(r, g, b);
+                const c = (1 - r - k) / (1 - k) || 0;
+                const m = (1 - g - k) / (1 - k) || 0;
+                const y = (1 - b - k) / (1 - k) || 0;
+                return {
+                    c: Math.round(c * 100),
+                    m: Math.round(m * 100),
+                    y: Math.round(y * 100),
+                    k: Math.round(k * 100)
+                };
+            }
+
+            // Generate descriptive color name
+            function generateDescriptiveName(hsl) {
+                const hue = hsl.h;
+                const saturation = hsl.s;
+                const lightness = hsl.l;
+
+                let hueName = '';
+                if (hue < 15 || hue >= 345) hueName = 'Red';
+                else if (hue < 45) hueName = 'Orange';
+                else if (hue < 75) hueName = 'Yellow';
+                else if (hue < 105) hueName = 'Lime';
+                else if (hue < 135) hueName = 'Green';
+                else if (hue < 165) hueName = 'Cyan';
+                else if (hue < 195) hueName = 'Blue';
+                else if (hue < 225) hueName = 'Indigo';
+                else if (hue < 255) hueName = 'Violet';
+                else if (hue < 285) hueName = 'Magenta';
+                else if (hue < 315) hueName = 'Pink';
+                else hueName = 'Red';
+
+                let saturationName = '';
+                if (saturation < 10) saturationName = 'Gray';
+                else if (saturation < 30) saturationName = 'Muted';
+                else if (saturation < 70) saturationName = '';
+                else saturationName = 'Vibrant';
+
+                let lightnessName = '';
+                if (lightness < 20) lightnessName = 'Dark';
+                else if (lightness < 40) lightnessName = 'Deep';
+                else if (lightness < 60) lightnessName = '';
+                else if (lightness < 80) lightnessName = 'Light';
+                else lightnessName = 'Pale';
+
+                return `${lightnessName} ${saturationName} ${hueName}`.trim();
+            }
+
+            // Update color information
+            function updateColorInfo(hex) {
+                const rgb = hexToRgb(hex);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+
+                // Update color preview
+                colorPreview.style.backgroundColor = hex;
+                colorHexDisplay.textContent = hex;
+
+                // Update color information
+                rgbValue.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                hslValue.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+                cmykValue.value = `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`;
+
+                // Update color names
+                namesContainer.innerHTML = '';
+                
+                // CSS Color Name
+                const cssName = cssColors[hex.toLowerCase()];
+                if (cssName) {
+                    const cssNameElement = document.createElement('div');
+                    cssNameElement.className = 'color-name css-name';
+                    cssNameElement.innerHTML = `
+                        <div class="name-type">CSS Color Name</div>
+                        <div class="name-value">${cssName}</div>
+                        <button class="btn btn-sm btn-outline-secondary copy-name">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    `;
+                    namesContainer.appendChild(cssNameElement);
+                    colorName.textContent = cssName;
+                }
+
+                // Descriptive Name
+                const descriptiveName = generateDescriptiveName(hsl);
+                const descriptiveElement = document.createElement('div');
+                descriptiveElement.className = 'color-name descriptive-name';
+                descriptiveElement.innerHTML = `
+                    <div class="name-type">Descriptive Name</div>
+                    <div class="name-value">${descriptiveName}</div>
+                    <button class="btn btn-sm btn-outline-secondary copy-name">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                `;
+                namesContainer.appendChild(descriptiveElement);
+
+                // Add copy functionality to name buttons
+                document.querySelectorAll('.copy-name').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const name = btn.parentElement.querySelector('.name-value').textContent;
+                        navigator.clipboard.writeText(name)
+                            .then(() => {
+                                btn.innerHTML = '<i class="fas fa-check"></i>';
+                                setTimeout(() => {
+                                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            })
+                            .catch(err => {
+                                console.error('Failed to copy:', err);
+                                btn.innerHTML = '<i class="fas fa-times"></i>';
+                                setTimeout(() => {
+                                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            });
+                    });
+                });
+            }
+
+            // Color picker change
+            colorPicker.addEventListener('input', () => {
+                colorHex.value = colorPicker.value;
+                updateColorInfo(colorPicker.value);
+            });
+
+            // Hex input change
+            colorHex.addEventListener('input', () => {
+                const hex = colorHex.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    colorPicker.value = hex;
+                    updateColorInfo(hex);
+                }
+            });
+
+            // Paste color
+            pasteColorBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    if (/^#[0-9A-F]{6}$/i.test(text)) {
+                        colorPicker.value = text;
+                        colorHex.value = text;
+                        updateColorInfo(text);
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Copy color name
+            copyBtn.addEventListener('click', () => {
+                const name = colorName.textContent;
+                navigator.clipboard.writeText(name)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Color Name';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Color Name';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                colorPicker.value = '#ff0000';
+                colorHex.value = '#ff0000';
+                updateColorInfo('#ff0000');
+            });
+
+            // Initialize
+            updateColorInfo('#ff0000');
+        });
+    </script>
+</body>
+</html> 

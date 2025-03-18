@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Counter - Count Characters, Words, Lines | MultiTools</title>
+    <meta name="description" content="Free online text counter. Count characters, words, lines, paragraphs, and more with detailed statistics and analysis.">
+    <meta name="keywords" content="text counter, character counter, word counter, line counter, text statistics">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Text Counter - Count Characters, Words, Lines">
+    <meta property="og:description" content="Free online text counter. Count characters, words, lines, paragraphs, and more with detailed statistics and analysis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/text-tools/text-counter.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/text-tools.css">
+    <style>
+        .counter-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .counter-stat {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        .counter-stat i {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+        .counter-stat h6 {
+            margin: 0;
+            color: #212529;
+        }
+        .counter-stat p {
+            margin: 0.5rem 0 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #0d6efd;
+        }
+        .counter-stat small {
+            color: #6c757d;
+        }
+        .counter-details {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .detail-group {
+            margin-bottom: 1rem;
+        }
+        .detail-group:last-child {
+            margin-bottom: 0;
+        }
+        .detail-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .detail-value {
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #0d6efd;
+        }
+        .counter-chart {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            height: 300px;
+        }
+        .counter-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .counter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .counter-option input {
+            margin: 0;
+        }
+        .counter-option label {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+        .counter-preview {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="text-tool-container p-4">
+                    <h1 class="mb-4">Text Counter</h1>
+                    <p class="lead mb-4">Count characters, words, lines, paragraphs, and more with detailed statistics and analysis.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Counter Options -->
+                            <div class="counter-options">
+                                <div class="counter-option">
+                                    <input type="checkbox" class="form-check-input" id="countSpaces" checked>
+                                    <label for="countSpaces">Count spaces</label>
+                                </div>
+                                <div class="counter-option">
+                                    <input type="checkbox" class="form-check-input" id="countPunctuation" checked>
+                                    <label for="countPunctuation">Count punctuation</label>
+                                </div>
+                                <div class="counter-option">
+                                    <input type="checkbox" class="form-check-input" id="countNewlines" checked>
+                                    <label for="countNewlines">Count newlines</label>
+                                </div>
+                                <div class="counter-option">
+                                    <input type="checkbox" class="form-check-input" id="countBytes" checked>
+                                    <label for="countBytes">Count bytes</label>
+                                </div>
+                            </div>
+
+                            <!-- Counter Stats -->
+                            <div class="counter-stats">
+                                <div class="counter-stat">
+                                    <i class="fas fa-font"></i>
+                                    <h6>Characters</h6>
+                                    <p id="charCount">0</p>
+                                    <small>Total characters</small>
+                                </div>
+                                <div class="counter-stat">
+                                    <i class="fas fa-book"></i>
+                                    <h6>Words</h6>
+                                    <p id="wordCount">0</p>
+                                    <small>Total words</small>
+                                </div>
+                                <div class="counter-stat">
+                                    <i class="fas fa-align-left"></i>
+                                    <h6>Lines</h6>
+                                    <p id="lineCount">0</p>
+                                    <small>Total lines</small>
+                                </div>
+                                <div class="counter-stat">
+                                    <i class="fas fa-paragraph"></i>
+                                    <h6>Paragraphs</h6>
+                                    <p id="paragraphCount">0</p>
+                                    <small>Total paragraphs</small>
+                                </div>
+                            </div>
+
+                            <!-- Counter Details -->
+                            <div class="counter-details">
+                                <div class="detail-group">
+                                    <label>Character Details</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Spaces: <span class="detail-value" id="spaceCount">0</span></p>
+                                            <p class="mb-1">Punctuation: <span class="detail-value" id="punctuationCount">0</span></p>
+                                            <p class="mb-1">Letters: <span class="detail-value" id="letterCount">0</span></p>
+                                            <p class="mb-1">Numbers: <span class="detail-value" id="numberCount">0</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Uppercase: <span class="detail-value" id="uppercaseCount">0</span></p>
+                                            <p class="mb-1">Lowercase: <span class="detail-value" id="lowercaseCount">0</span></p>
+                                            <p class="mb-1">Special: <span class="detail-value" id="specialCount">0</span></p>
+                                            <p class="mb-1">Bytes: <span class="detail-value" id="byteCount">0</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Word Details</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Unique words: <span class="detail-value" id="uniqueWordCount">0</span></p>
+                                            <p class="mb-1">Average word length: <span class="detail-value" id="avgWordLength">0</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Shortest word: <span class="detail-value" id="shortestWord">-</span></p>
+                                            <p class="mb-1">Longest word: <span class="detail-value" id="longestWord">-</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Reading Time</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Reading time: <span class="detail-value" id="readingTime">0</span> minutes</p>
+                                            <p class="mb-1">Speaking time: <span class="detail-value" id="speakingTime">0</span> minutes</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-1">Reading speed: <span class="detail-value" id="readingSpeed">0</span> words/min</p>
+                                            <p class="mb-1">Speaking speed: <span class="detail-value" id="speakingSpeed">0</span> words/min</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Counter Chart -->
+                            <div class="counter-chart" id="counterChart"></div>
+
+                            <!-- Counter Preview -->
+                            <div class="counter-preview" id="counterPreview" contenteditable="true"></div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="countBtn">
+                                    <i class="fas fa-calculator me-2"></i>Count
+                                </button>
+                                <button class="btn btn-outline-secondary" id="clearBtn">
+                                    <i class="fas fa-trash me-2"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Text Counter</h5>
+                            <p class="card-text">
+                                Our Text Counter tool helps you:
+                            </p>
+                            <ul>
+                                <li>Count characters, words, and lines</li>
+                                <li>Analyze text composition</li>
+                                <li>Calculate reading and speaking time</li>
+                                <li>Get detailed text statistics</li>
+                                <li>Track text metrics in real-time</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for writers, editors, and content creators.
+                                The tool provides comprehensive text analysis and statistics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/text-tools/text-case-converter.html">
+                                    <i class="fas fa-text-height me-2"></i>Text Case Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-formatter.html">
+                                    <i class="fas fa-align-left me-2"></i>Text Formatter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/text-tools/text-encoder.html">
+                                    <i class="fas fa-code me-2"></i>Text Encoder
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterPreview = document.getElementById('counterPreview');
+            const countBtn = document.getElementById('countBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const countSpaces = document.getElementById('countSpaces');
+            const countPunctuation = document.getElementById('countPunctuation');
+            const countNewlines = document.getElementById('countNewlines');
+            const countBytes = document.getElementById('countBytes');
+
+            // Initialize chart
+            const ctx = document.getElementById('counterChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Characters', 'Words', 'Lines', 'Paragraphs'],
+                    datasets: [{
+                        label: 'Count',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: '#0d6efd',
+                        borderColor: '#0a58ca',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Count text
+            function countText() {
+                const text = counterPreview.textContent;
+                const stats = {
+                    chars: 0,
+                    spaces: 0,
+                    punctuation: 0,
+                    letters: 0,
+                    numbers: 0,
+                    uppercase: 0,
+                    lowercase: 0,
+                    special: 0,
+                    bytes: 0,
+                    words: 0,
+                    lines: 0,
+                    paragraphs: 0,
+                    uniqueWords: new Set(),
+                    shortestWord: Infinity,
+                    longestWord: 0
+                };
+
+                // Count characters
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    stats.chars++;
+
+                    if (char === ' ') {
+                        stats.spaces++;
+                    } else if (/[.,!?;:]/g.test(char)) {
+                        stats.punctuation++;
+                    } else if (/[a-zA-Z]/.test(char)) {
+                        stats.letters++;
+                        if (char === char.toUpperCase()) {
+                            stats.uppercase++;
+                        } else {
+                            stats.lowercase++;
+                        }
+                    } else if (/[0-9]/.test(char)) {
+                        stats.numbers++;
+                    } else if (char !== '\n') {
+                        stats.special++;
+                    }
+
+                    if (char === '\n') {
+                        stats.lines++;
+                    }
+                }
+
+                // Count bytes
+                stats.bytes = new TextEncoder().encode(text).length;
+
+                // Count words and paragraphs
+                const words = text.trim().split(/\s+/);
+                stats.words = words.length;
+                stats.paragraphs = text.split(/\n\s*\n/).filter(p => p.trim()).length;
+
+                // Analyze words
+                words.forEach(word => {
+                    stats.uniqueWords.add(word.toLowerCase());
+                    stats.shortestWord = Math.min(stats.shortestWord, word.length);
+                    stats.longestWord = Math.max(stats.longestWord, word.length);
+                });
+
+                // Calculate reading and speaking time
+                const readingSpeed = 200; // words per minute
+                const speakingSpeed = 130; // words per minute
+                stats.readingTime = Math.ceil(stats.words / readingSpeed);
+                stats.speakingTime = Math.ceil(stats.words / speakingSpeed);
+
+                // Update stats display
+                document.getElementById('charCount').textContent = stats.chars;
+                document.getElementById('wordCount').textContent = stats.words;
+                document.getElementById('lineCount').textContent = stats.lines;
+                document.getElementById('paragraphCount').textContent = stats.paragraphs;
+                document.getElementById('spaceCount').textContent = stats.spaces;
+                document.getElementById('punctuationCount').textContent = stats.punctuation;
+                document.getElementById('letterCount').textContent = stats.letters;
+                document.getElementById('numberCount').textContent = stats.numbers;
+                document.getElementById('uppercaseCount').textContent = stats.uppercase;
+                document.getElementById('lowercaseCount').textContent = stats.lowercase;
+                document.getElementById('specialCount').textContent = stats.special;
+                document.getElementById('byteCount').textContent = stats.bytes;
+                document.getElementById('uniqueWordCount').textContent = stats.uniqueWords.size;
+                document.getElementById('avgWordLength').textContent = (stats.letters / stats.words).toFixed(1);
+                document.getElementById('shortestWord').textContent = stats.shortestWord === Infinity ? '-' : stats.shortestWord;
+                document.getElementById('longestWord').textContent = stats.longestWord;
+                document.getElementById('readingTime').textContent = stats.readingTime;
+                document.getElementById('speakingTime').textContent = stats.speakingTime;
+                document.getElementById('readingSpeed').textContent = readingSpeed;
+                document.getElementById('speakingSpeed').textContent = speakingSpeed;
+
+                // Update chart
+                chart.data.datasets[0].data = [stats.chars, stats.words, stats.lines, stats.paragraphs];
+                chart.update();
+            }
+
+            // Event Listeners
+            counterPreview.addEventListener('input', countText);
+            countBtn.addEventListener('click', countText);
+            clearBtn.addEventListener('click', () => {
+                counterPreview.textContent = '';
+                countText();
+            });
+
+            // Initialize
+            countText();
+        });
+    </script>
+</body>
+</html> 

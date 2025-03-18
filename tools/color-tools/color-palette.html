@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette - Generate Color Schemes Online | MultiTools</title>
+    <meta name="description" content="Free online color palette generator. Create harmonious color schemes with complementary, analogous, triadic, and more options. Perfect for designers and developers.">
+    <meta name="keywords" content="color palette, color scheme, color harmony, complementary colors, analogous colors, triadic colors, online generator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Palette - Generate Color Schemes Online">
+    <meta property="og:description" content="Free online color palette generator. Create harmonious color schemes with complementary, analogous, triadic, and more options. Perfect for designers and developers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-palette.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Palette</h1>
+                    <p class="lead mb-4">Generate harmonious color schemes from a single color. Create beautiful palettes for your designs.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Base Color Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Base Color:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="baseColorInput" placeholder="#000000">
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Enter a color code or use the color picker</div>
+                            </div>
+
+                            <!-- Color Scheme Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Color Scheme:</label>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-primary" data-scheme="complementary">
+                                        <i class="fas fa-circle-half-stroke me-2"></i>Complementary
+                                    </button>
+                                    <button class="btn btn-outline-primary" data-scheme="analogous">
+                                        <i class="fas fa-circle-chevron-right me-2"></i>Analogous
+                                    </button>
+                                    <button class="btn btn-outline-primary" data-scheme="triadic">
+                                        <i class="fas fa-triangle me-2"></i>Triadic
+                                    </button>
+                                    <button class="btn btn-outline-primary" data-scheme="split-complementary">
+                                        <i class="fas fa-circle-chevron-left me-2"></i>Split Complementary
+                                    </button>
+                                    <button class="btn btn-outline-primary" data-scheme="tetradic">
+                                        <i class="fas fa-square me-2"></i>Tetradic
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Palette Display -->
+                            <div class="color-palette mb-4">
+                                <div class="palette-colors" id="paletteColors">
+                                    <!-- Color swatches will be added here -->
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info">
+                                <div class="color-value" id="hexValue">
+                                    <strong>HEX:</strong> <span>#000000</span>
+                                </div>
+                                <div class="color-value" id="rgbValue">
+                                    <strong>RGB:</strong> <span>rgb(0, 0, 0)</span>
+                                </div>
+                                <div class="color-value" id="hslValue">
+                                    <strong>HSL:</strong> <span>hsl(0, 0%, 0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Palette
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Palette</h5>
+                            <p class="card-text">
+                                Our Color Palette Generator allows you to:
+                            </p>
+                            <ul>
+                                <li>Generate harmonious color schemes</li>
+                                <li>Create multiple color combinations</li>
+                                <li>Get color codes in multiple formats</li>
+                                <li>Copy entire palettes instantly</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for web designers, graphic artists, and anyone creating color schemes.
+                                The tool provides various color harmony options to help you create beautiful designs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-harmony.html">
+                                    <i class="fas fa-magic me-2"></i>Color Harmony
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const baseColorInput = document.getElementById('baseColorInput');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const paletteColors = document.getElementById('paletteColors');
+            const hexValue = document.getElementById('hexValue');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const schemeButtons = document.querySelectorAll('[data-scheme]');
+
+            let currentColor = '#000000';
+            let currentScheme = 'complementary';
+
+            // Handle scheme selection
+            schemeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    schemeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentScheme = button.dataset.scheme;
+                    generatePalette(currentColor);
+                });
+            });
+
+            // Handle color input
+            baseColorInput.addEventListener('input', () => {
+                const value = baseColorInput.value.trim();
+                if (isValidHexColor(value)) {
+                    currentColor = value;
+                    generatePalette(value);
+                }
+            });
+
+            // Handle paste button
+            pasteBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    baseColorInput.value = text.trim();
+                    if (isValidHexColor(text.trim())) {
+                        currentColor = text.trim();
+                        generatePalette(text.trim());
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Validate hex color
+            function isValidHexColor(color) {
+                return /^#?([a-f\d]{3}){1,2}$/i.test(color);
+            }
+
+            // Generate color palette
+            function generatePalette(baseColor) {
+                const rgb = hexToRgb(baseColor);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                const colors = [];
+
+                switch (currentScheme) {
+                    case 'complementary':
+                        colors.push(baseColor, hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l));
+                        break;
+                    case 'analogous':
+                        colors.push(
+                            baseColor,
+                            hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l),
+                            hslToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l)
+                        );
+                        break;
+                    case 'triadic':
+                        colors.push(
+                            baseColor,
+                            hslToHex((hsl.h + 120) % 360, hsl.s, hsl.l),
+                            hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l)
+                        );
+                        break;
+                    case 'split-complementary':
+                        colors.push(
+                            baseColor,
+                            hslToHex((hsl.h + 150) % 360, hsl.s, hsl.l),
+                            hslToHex((hsl.h + 210) % 360, hsl.s, hsl.l)
+                        );
+                        break;
+                    case 'tetradic':
+                        colors.push(
+                            baseColor,
+                            hslToHex((hsl.h + 90) % 360, hsl.s, hsl.l),
+                            hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l),
+                            hslToHex((hsl.h + 270) % 360, hsl.s, hsl.l)
+                        );
+                        break;
+                }
+
+                // Update palette display
+                paletteColors.innerHTML = colors.map(color => `
+                    <div class="color-swatch" style="background-color: ${color}">
+                        <div class="color-code">${color}</div>
+                    </div>
+                `).join('');
+
+                // Update color information
+                updateColorInfo(baseColor);
+            }
+
+            // Update color information
+            function updateColorInfo(color) {
+                const rgb = hexToRgb(color);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+                hexValue.querySelector('span').textContent = color;
+                rgbValue.querySelector('span').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                hslValue.querySelector('span').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+            }
+
+            // Copy palette
+            copyBtn.addEventListener('click', () => {
+                const colors = Array.from(paletteColors.querySelectorAll('.color-code'))
+                    .map(el => el.textContent)
+                    .join('\n');
+                
+                navigator.clipboard.writeText(colors)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Palette';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Palette';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                baseColorInput.value = '';
+                currentColor = '#000000';
+                generatePalette('#000000');
+            });
+
+            // Color conversion functions
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            function hslToHex(h, s, l) {
+                s /= 100;
+                l /= 100;
+                const c = (1 - Math.abs(2 * l - 1)) * s;
+                const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+                const rgb = [0, 0, 0];
+                let r, g, b;
+
+                if (h >= 0 && h < 60) {
+                    rgb[0] = c; rgb[1] = x; rgb[2] = 0;
+                } else if (h >= 60 && h < 120) {
+                    rgb[0] = x; rgb[1] = c; rgb[2] = 0;
+                } else if (h >= 120 && h < 180) {
+                    rgb[0] = 0; rgb[1] = c; rgb[2] = x;
+                } else if (h >= 180 && h < 240) {
+                    rgb[0] = 0; rgb[1] = x; rgb[2] = c;
+                } else if (h >= 240 && h < 300) {
+                    rgb[0] = x; rgb[1] = 0; rgb[2] = c;
+                } else if (h >= 300 && h < 360) {
+                    rgb[0] = c; rgb[1] = 0; rgb[2] = x;
+                }
+
+                const m = l - c / 2;
+                rgb[0] = Math.round((rgb[0] + m) * 255);
+                rgb[1] = Math.round((rgb[1] + m) * 255);
+                rgb[2] = Math.round((rgb[2] + m) * 255);
+
+                return `#${rgb.map(x => {
+                    const hex = x.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('')}`;
+            }
+
+            // Set initial scheme button as active
+            schemeButtons[0].click();
+        });
+    </script>
+</body>
+</html> 

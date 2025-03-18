@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Base64 Converter - Convert Images to Base64 Online | MultiTools</title>
+    <meta name="description" content="Free online image to Base64 converter. Convert any image to Base64 encoded string instantly. Fast, easy to use, and no registration required.">
+    <meta name="keywords" content="image to base64, base64 converter, image converter, base64 encode, online converter, free converter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image to Base64 Converter - Convert Images to Base64 Online">
+    <meta property="og:description" content="Free online image to Base64 converter. Convert any image to Base64 encoded string instantly. Fast, easy to use, and no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/image-tools/image-to-base64.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="image-tool-container p-4">
+                    <h1 class="mb-4">Image to Base64 Converter</h1>
+                    <p class="lead mb-4">Convert any image to Base64 encoded string instantly. Fast, free, and easy to use.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageInput" class="form-label">Select Image:</label>
+                                <div class="image-upload-container">
+                                    <input type="file" class="form-control" id="imageInput" accept="image/*">
+                                    <div class="image-preview-container mt-3 d-none" id="imagePreviewContainer">
+                                        <img id="imagePreview" class="img-fluid rounded" alt="Preview">
+                                        <div class="image-info mt-2">
+                                            <small class="text-muted">Size: <span id="imageSize">0 KB</span></small>
+                                            <small class="text-muted ms-3">Dimensions: <span id="imageDimensions">0 x 0</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary" id="convertBtn" disabled>
+                                        <i class="fas fa-exchange-alt me-2"></i>Convert to Base64
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn" disabled>
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="result-card mb-4 d-none" id="resultCard">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Base64 Result</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Base64 String:</label>
+                                <div class="result-box">
+                                    <code id="base64Result"></code>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-success" id="copyBtn">
+                                    <i class="fas fa-copy me-2"></i>Copy to Clipboard
+                                </button>
+                                <div class="text-muted">
+                                    <small>Length: <span id="base64Length">0</span> characters</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Image to Base64 Converter</h5>
+                            <p class="card-text">
+                                Our Image to Base64 Converter allows you to:
+                            </p>
+                            <ul>
+                                <li>Convert any image to Base64 encoded string</li>
+                                <li>Support for all common image formats (JPG, PNG, GIF, etc.)</li>
+                                <li>Preview image before conversion</li>
+                                <li>Copy result to clipboard</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for web developers, designers, and anyone working with images in web applications.
+                                The tool provides instant conversion with accurate results.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/image-tools/image-resizer.html">
+                                    <i class="fas fa-image me-2"></i>Image Resizer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-compressor.html">
+                                    <i class="fas fa-compress-alt me-2"></i>Image Compressor
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/image-tools/image-format-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Image Format Converter
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imageSize = document.getElementById('imageSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultCard = document.getElementById('resultCard');
+            const base64Result = document.getElementById('base64Result');
+            const base64Length = document.getElementById('base64Length');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // Handle image selection
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    if (!file.type.startsWith('image/')) {
+                        alert('Please select a valid image file.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Validate file size (max 5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Image size should be less than 5MB.');
+                        imageInput.value = '';
+                        return;
+                    }
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreviewContainer.classList.remove('d-none');
+                        
+                        // Update image info
+                        imageSize.textContent = formatFileSize(file.size);
+                        const img = new Image();
+                        img.onload = () => {
+                            imageDimensions.textContent = `${img.width} x ${img.height}`;
+                        };
+                        img.src = e.target.result;
+
+                        // Enable buttons
+                        convertBtn.disabled = false;
+                        clearBtn.disabled = false;
+                        convertBtn.classList.add('btn-pulse');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Handle conversion
+            convertBtn.addEventListener('click', () => {
+                const file = imageInput.files[0];
+                if (file) {
+                    // Add loading state
+                    convertBtn.disabled = true;
+                    convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Converting...';
+                    
+                    // Simulate processing time for better UX
+                    setTimeout(() => {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const base64 = e.target.result;
+                            base64Result.textContent = base64;
+                            base64Length.textContent = base64.length;
+                            resultCard.classList.remove('d-none');
+                            
+                            // Reset button state
+                            convertBtn.disabled = false;
+                            convertBtn.innerHTML = '<i class="fas fa-exchange-alt me-2"></i>Convert to Base64';
+                        };
+                        reader.readAsDataURL(file);
+                    }, 500);
+                }
+            });
+
+            // Copy to clipboard with enhanced feedback
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(base64Result.textContent)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy to Clipboard';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy to Clipboard';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all with animation
+            clearBtn.addEventListener('click', () => {
+                imageInput.value = '';
+                imagePreviewContainer.classList.add('d-none');
+                resultCard.classList.add('d-none');
+                convertBtn.disabled = true;
+                clearBtn.disabled = true;
+                convertBtn.classList.remove('btn-pulse');
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Blindness Simulator - Test Color Accessibility Online | MultiTools</title>
+    <meta name="description" content="Free online color blindness simulator. Test how your colors appear to people with different types of color blindness. Ensure your designs are accessible to everyone.">
+    <meta name="keywords" content="color blindness, color vision deficiency, color accessibility, color testing, color simulation, online tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Color Blindness Simulator - Test Color Accessibility Online">
+    <meta property="og:description" content="Free online color blindness simulator. Test how your colors appear to people with different types of color blindness. Ensure your designs are accessible to everyone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multitools.com/tools/color-tools/color-blindness-simulator.html">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color-tools.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Tool Content -->
+            <div class="col-lg-8">
+                <div class="color-tool-container p-4">
+                    <h1 class="mb-4">Color Blindness Simulator</h1>
+                    <p class="lead mb-4">Test how your colors appear to people with different types of color blindness. Ensure your designs are accessible to everyone.</p>
+
+                    <!-- Tool Interface -->
+                    <div class="tool-card mb-4">
+                        <div class="card-body">
+                            <!-- Color Selection -->
+                            <div class="mb-4">
+                                <label class="form-label">Select Colors:</label>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="primary">
+                                        <i class="fas fa-paint-brush me-2"></i>Primary Color
+                                    </button>
+                                    <button class="btn btn-outline-primary flex-grow-1" data-color="secondary">
+                                        <i class="fas fa-paint-brush me-2"></i>Secondary Color
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Color Input -->
+                            <div class="mb-4">
+                                <label class="form-label">Color Value:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="colorInput" placeholder="#000000">
+                                    <button class="btn btn-outline-secondary" type="button" id="pasteBtn">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Enter a color code or use the color picker</div>
+                            </div>
+
+                            <!-- Color Adjustments -->
+                            <div class="mb-4">
+                                <label class="form-label">Adjust Color:</label>
+                                <div class="color-sliders">
+                                    <div class="color-slider">
+                                        <label for="hueSlider">Hue</label>
+                                        <input type="range" class="form-range" id="hueSlider" min="0" max="360" value="0">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="saturationSlider">Saturation</label>
+                                        <input type="range" class="form-range" id="saturationSlider" min="0" max="100" value="100">
+                                    </div>
+                                    <div class="color-slider">
+                                        <label for="lightnessSlider">Lightness</label>
+                                        <input type="range" class="form-range" id="lightnessSlider" min="0" max="100" value="50">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Preview -->
+                            <div class="color-preview mb-4">
+                                <div class="preview-container">
+                                    <div class="preview-box" id="primaryPreview" style="background-color: #000000">
+                                        <div class="preview-label">Primary</div>
+                                    </div>
+                                    <div class="preview-box" id="secondaryPreview" style="background-color: #ffffff">
+                                        <div class="preview-label">Secondary</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Blindness Simulation -->
+                            <div class="simulation-section mb-4">
+                                <h5 class="mb-3">Color Blindness Simulation</h5>
+                                <div class="simulation-grid">
+                                    <div class="simulation-item">
+                                        <div class="simulation-preview" id="normalPreview">
+                                            <div class="simulation-label">Normal Vision</div>
+                                        </div>
+                                        <div class="simulation-info">
+                                            <strong>Normal Vision</strong>
+                                            <p>How most people see the colors</p>
+                                        </div>
+                                    </div>
+                                    <div class="simulation-item">
+                                        <div class="simulation-preview" id="protanopiaPreview">
+                                            <div class="simulation-label">Protanopia</div>
+                                        </div>
+                                        <div class="simulation-info">
+                                            <strong>Protanopia</strong>
+                                            <p>Red-green color blindness (red deficiency)</p>
+                                        </div>
+                                    </div>
+                                    <div class="simulation-item">
+                                        <div class="simulation-preview" id="deuteranopiaPreview">
+                                            <div class="simulation-label">Deuteranopia</div>
+                                        </div>
+                                        <div class="simulation-info">
+                                            <strong>Deuteranopia</strong>
+                                            <p>Red-green color blindness (green deficiency)</p>
+                                        </div>
+                                    </div>
+                                    <div class="simulation-item">
+                                        <div class="simulation-preview" id="tritanopiaPreview">
+                                            <div class="simulation-label">Tritanopia</div>
+                                        </div>
+                                        <div class="simulation-info">
+                                            <strong>Tritanopia</strong>
+                                            <p>Blue-yellow color blindness</p>
+                                        </div>
+                                    </div>
+                                    <div class="simulation-item">
+                                        <div class="simulation-preview" id="achromatopsiaPreview">
+                                            <div class="simulation-label">Achromatopsia</div>
+                                        </div>
+                                        <div class="simulation-info">
+                                            <strong>Achromatopsia</strong>
+                                            <p>Complete color blindness</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accessibility Analysis -->
+                            <div class="accessibility-analysis mb-4">
+                                <h5 class="mb-3">Accessibility Analysis</h5>
+                                <div class="analysis-item">
+                                    <strong>Contrast Ratio:</strong>
+                                    <span id="contrastRatio">21:1</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>Color Difference:</strong>
+                                    <span id="colorDifference">100%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="analysis-item">
+                                    <strong>Accessibility Score:</strong>
+                                    <span id="accessibilityScore">100%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color Information -->
+                            <div class="color-info">
+                                <div class="color-value" id="hexValue">
+                                    <strong>HEX:</strong> <span>#000000</span>
+                                </div>
+                                <div class="color-value" id="rgbValue">
+                                    <strong>RGB:</strong> <span>rgb(0, 0, 0)</span>
+                                </div>
+                                <div class="color-value" id="hslValue">
+                                    <strong>HSL:</strong> <span>hsl(0, 0%, 0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-success" id="copyBtn">
+                                        <i class="fas fa-copy me-2"></i>Copy Colors
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="clearBtn">
+                                        <i class="fas fa-trash me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Information -->
+                    <div class="tool-card tool-info">
+                        <div class="card-body">
+                            <h5 class="card-title">About Color Blindness Simulation</h5>
+                            <p class="card-text">
+                                Our Color Blindness Simulator helps you:
+                            </p>
+                            <ul>
+                                <li>Test color combinations for accessibility</li>
+                                <li>Understand different types of color blindness</li>
+                                <li>Ensure your designs are inclusive</li>
+                                <li>Create color-blind friendly designs</li>
+                            </ul>
+                            <p class="card-text">
+                                Perfect for designers, developers, and anyone creating content that needs to be accessible to all users.
+                                The tool simulates how colors appear to people with different types of color vision deficiency.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Ad Space -->
+                <div class="tool-card mb-4">
+                    <div class="card-body">
+                        <div class="ad-container">
+                            <!-- Ad content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Related Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0 related-tools">
+                            <li>
+                                <a href="/tools/color-tools/color-picker.html">
+                                    <i class="fas fa-eye-dropper me-2"></i>Color Picker
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-converter.html">
+                                    <i class="fas fa-exchange-alt me-2"></i>Color Converter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tools/color-tools/color-palette.html">
+                                    <i class="fas fa-palette me-2"></i>Color Palette
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    <!-- Tool-specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorInput = document.getElementById('colorInput');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const primaryPreview = document.getElementById('primaryPreview');
+            const secondaryPreview = document.getElementById('secondaryPreview');
+            const hexValue = document.getElementById('hexValue');
+            const rgbValue = document.getElementById('rgbValue');
+            const hslValue = document.getElementById('hslValue');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const colorButtons = document.querySelectorAll('[data-color]');
+            const hueSlider = document.getElementById('hueSlider');
+            const saturationSlider = document.getElementById('saturationSlider');
+            const lightnessSlider = document.getElementById('lightnessSlider');
+            const contrastRatio = document.getElementById('contrastRatio');
+            const colorDifference = document.getElementById('colorDifference');
+            const accessibilityScore = document.getElementById('accessibilityScore');
+
+            // Simulation previews
+            const normalPreview = document.getElementById('normalPreview');
+            const protanopiaPreview = document.getElementById('protanopiaPreview');
+            const deuteranopiaPreview = document.getElementById('deuteranopiaPreview');
+            const tritanopiaPreview = document.getElementById('tritanopiaPreview');
+            const achromatopsiaPreview = document.getElementById('achromatopsiaPreview');
+
+            let currentColor = '#000000';
+            let selectedColor = 'primary';
+            let primaryColor = '#000000';
+            let secondaryColor = '#ffffff';
+
+            // Handle color selection
+            colorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    colorButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedColor = button.dataset.color;
+                    updateInputValue();
+                });
+            });
+
+            // Update input value based on selected color
+            function updateInputValue() {
+                colorInput.value = selectedColor === 'primary' ? primaryColor : secondaryColor;
+                updateSliders(colorInput.value);
+            }
+
+            // Handle color input
+            colorInput.addEventListener('input', () => {
+                const value = colorInput.value.trim();
+                if (isValidHexColor(value)) {
+                    if (selectedColor === 'primary') {
+                        primaryColor = value;
+                        primaryPreview.style.backgroundColor = value;
+                    } else {
+                        secondaryColor = value;
+                        secondaryPreview.style.backgroundColor = value;
+                    }
+                    updateSimulations();
+                    updateAnalysis();
+                }
+            });
+
+            // Handle paste button
+            pasteBtn.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    colorInput.value = text.trim();
+                    if (isValidHexColor(text.trim())) {
+                        if (selectedColor === 'primary') {
+                            primaryColor = text.trim();
+                            primaryPreview.style.backgroundColor = text.trim();
+                        } else {
+                            secondaryColor = text.trim();
+                            secondaryPreview.style.backgroundColor = text.trim();
+                        }
+                        updateSimulations();
+                        updateAnalysis();
+                    }
+                } catch (err) {
+                    console.error('Failed to read clipboard:', err);
+                }
+            });
+
+            // Handle color sliders
+            hueSlider.addEventListener('input', updateColorFromSliders);
+            saturationSlider.addEventListener('input', updateColorFromSliders);
+            lightnessSlider.addEventListener('input', updateColorFromSliders);
+
+            // Update color from sliders
+            function updateColorFromSliders() {
+                const h = hueSlider.value;
+                const s = saturationSlider.value;
+                const l = lightnessSlider.value;
+                const color = hslToHex(h, s, l);
+                
+                if (selectedColor === 'primary') {
+                    primaryColor = color;
+                    primaryPreview.style.backgroundColor = color;
+                } else {
+                    secondaryColor = color;
+                    secondaryPreview.style.backgroundColor = color;
+                }
+                
+                colorInput.value = color;
+                updateSimulations();
+                updateAnalysis();
+            }
+
+            // Update sliders from color
+            function updateSliders(color) {
+                const rgb = hexToRgb(color);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                hueSlider.value = hsl.h;
+                saturationSlider.value = hsl.s;
+                lightnessSlider.value = hsl.l;
+            }
+
+            // Update color blindness simulations
+            function updateSimulations() {
+                const primaryRgb = hexToRgb(primaryColor);
+                const secondaryRgb = hexToRgb(secondaryColor);
+
+                // Update normal vision preview
+                normalPreview.style.background = `linear-gradient(45deg, ${primaryColor} 50%, ${secondaryColor} 50%)`;
+
+                // Update protanopia simulation
+                const protanopiaPrimary = simulateProtanopia(primaryRgb);
+                const protanopiaSecondary = simulateProtanopia(secondaryRgb);
+                protanopiaPreview.style.background = `linear-gradient(45deg, ${protanopiaPrimary} 50%, ${protanopiaSecondary} 50%)`;
+
+                // Update deuteranopia simulation
+                const deuteranopiaPrimary = simulateDeuteranopia(primaryRgb);
+                const deuteranopiaSecondary = simulateDeuteranopia(secondaryRgb);
+                deuteranopiaPreview.style.background = `linear-gradient(45deg, ${deuteranopiaPrimary} 50%, ${deuteranopiaSecondary} 50%)`;
+
+                // Update tritanopia simulation
+                const tritanopiaPrimary = simulateTritanopia(primaryRgb);
+                const tritanopiaSecondary = simulateTritanopia(secondaryRgb);
+                tritanopiaPreview.style.background = `linear-gradient(45deg, ${tritanopiaPrimary} 50%, ${tritanopiaSecondary} 50%)`;
+
+                // Update achromatopsia simulation
+                const achromatopsiaPrimary = simulateAchromatopsia(primaryRgb);
+                const achromatopsiaSecondary = simulateAchromatopsia(secondaryRgb);
+                achromatopsiaPreview.style.background = `linear-gradient(45deg, ${achromatopsiaPrimary} 50%, ${achromatopsiaSecondary} 50%)`;
+            }
+
+            // Color blindness simulation functions
+            function simulateProtanopia(rgb) {
+                // Red deficiency
+                const r = rgb.r * 0.567 + rgb.g * 0.433;
+                const g = rgb.r * 0.558 + rgb.g * 0.442;
+                const b = rgb.r * 0 + rgb.g * 0.242 + rgb.b * 0.758;
+                return rgbToHex(r, g, b);
+            }
+
+            function simulateDeuteranopia(rgb) {
+                // Green deficiency
+                const r = rgb.r * 0.625 + rgb.g * 0.375;
+                const g = rgb.r * 0.7 + rgb.g * 0.3;
+                const b = rgb.r * 0 + rgb.g * 0.3 + rgb.b * 0.7;
+                return rgbToHex(r, g, b);
+            }
+
+            function simulateTritanopia(rgb) {
+                // Blue deficiency
+                const r = rgb.r * 0.95 + rgb.g * 0.05;
+                const g = rgb.r * 0 + rgb.g * 0.433 + rgb.b * 0.567;
+                const b = rgb.r * 0 + rgb.g * 0.475 + rgb.b * 0.525;
+                return rgbToHex(r, g, b);
+            }
+
+            function simulateAchromatopsia(rgb) {
+                // Complete color blindness
+                const gray = (rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114);
+                return rgbToHex(gray, gray, gray);
+            }
+
+            // Update accessibility analysis
+            function updateAnalysis() {
+                const primaryRgb = hexToRgb(primaryColor);
+                const secondaryRgb = hexToRgb(secondaryColor);
+                const primaryHsl = rgbToHsl(primaryRgb.r, primaryRgb.g, primaryRgb.b);
+                const secondaryHsl = rgbToHsl(secondaryRgb.r, secondaryRgb.g, secondaryRgb.b);
+
+                // Calculate contrast ratio
+                const contrast = getContrastRatio(primaryRgb, secondaryRgb);
+                contrastRatio.textContent = contrast.toFixed(1) + ':1';
+                contrastRatio.nextElementSibling.querySelector('.progress-bar').style.width = 
+                    Math.min((contrast / 21) * 100, 100) + '%';
+
+                // Calculate color difference
+                const diff = calculateColorDifference(primaryHsl, secondaryHsl);
+                colorDifference.textContent = diff + '%';
+                colorDifference.nextElementSibling.querySelector('.progress-bar').style.width = diff + '%';
+
+                // Calculate accessibility score
+                const score = calculateAccessibilityScore(contrast, diff);
+                accessibilityScore.textContent = score + '%';
+                accessibilityScore.nextElementSibling.querySelector('.progress-bar').style.width = score + '%';
+            }
+
+            // Calculate contrast ratio
+            function getContrastRatio(color1, color2) {
+                const l1 = getLuminance(color1);
+                const l2 = getLuminance(color2);
+                const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+                return ratio;
+            }
+
+            // Calculate relative luminance
+            function getLuminance(color) {
+                const r = color.r / 255;
+                const g = color.g / 255;
+                const b = color.b / 255;
+                const [rs, gs, bs] = [r, g, b].map(val => {
+                    if (val <= 0.03928) return val / 12.92;
+                    return Math.pow((val + 0.055) / 1.055, 2.4);
+                });
+                return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+            }
+
+            // Calculate color difference
+            function calculateColorDifference(color1, color2) {
+                const hueDiff = Math.abs(color1.h - color2.h);
+                const satDiff = Math.abs(color1.s - color2.s);
+                const lightDiff = Math.abs(color1.l - color2.l);
+
+                // Weight the differences
+                const hueScore = 100 - (hueDiff / 180) * 100;
+                const satScore = 100 - (satDiff / 100) * 100;
+                const lightScore = 100 - (lightDiff / 100) * 100;
+
+                // Calculate weighted average
+                return Math.round((hueScore * 0.6 + satScore * 0.2 + lightScore * 0.2));
+            }
+
+            // Calculate accessibility score
+            function calculateAccessibilityScore(contrast, colorDiff) {
+                // Weight contrast more heavily for accessibility
+                const contrastScore = Math.min((contrast / 4.5) * 100, 100);
+                return Math.round((contrastScore * 0.7 + colorDiff * 0.3));
+            }
+
+            // Copy colors
+            copyBtn.addEventListener('click', () => {
+                const text = `Primary: ${primaryColor}\nSecondary: ${secondaryColor}`;
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        copyBtn.innerHTML = '<i class="fas fa-times me-2"></i>Failed to Copy';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Copy Colors';
+                        }, 2000);
+                    });
+            });
+
+            // Clear all
+            clearBtn.addEventListener('click', () => {
+                colorInput.value = '';
+                primaryColor = '#000000';
+                secondaryColor = '#ffffff';
+                primaryPreview.style.backgroundColor = primaryColor;
+                secondaryPreview.style.backgroundColor = secondaryColor;
+                updateSliders(primaryColor);
+                updateSimulations();
+                updateAnalysis();
+            });
+
+            // Color conversion functions
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100)
+                };
+            }
+
+            function hslToHex(h, s, l) {
+                s /= 100;
+                l /= 100;
+                const c = (1 - Math.abs(2 * l - 1)) * s;
+                const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+                const rgb = [0, 0, 0];
+                let r, g, b;
+
+                if (h >= 0 && h < 60) {
+                    rgb[0] = c; rgb[1] = x; rgb[2] = 0;
+                } else if (h >= 60 && h < 120) {
+                    rgb[0] = x; rgb[1] = c; rgb[2] = 0;
+                } else if (h >= 120 && h < 180) {
+                    rgb[0] = 0; rgb[1] = c; rgb[2] = x;
+                } else if (h >= 180 && h < 240) {
+                    rgb[0] = 0; rgb[1] = x; rgb[2] = c;
+                } else if (h >= 240 && h < 300) {
+                    rgb[0] = x; rgb[1] = 0; rgb[2] = c;
+                } else if (h >= 300 && h < 360) {
+                    rgb[0] = c; rgb[1] = 0; rgb[2] = x;
+                }
+
+                const m = l - c / 2;
+                rgb[0] = Math.round((rgb[0] + m) * 255);
+                rgb[1] = Math.round((rgb[1] + m) * 255);
+                rgb[2] = Math.round((rgb[2] + m) * 255);
+
+                return `#${rgb.map(x => {
+                    const hex = x.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('')}`;
+            }
+
+            function rgbToHex(r, g, b) {
+                return '#' + [r, g, b].map(x => {
+                    const hex = Math.round(x).toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('');
+            }
+
+            // Set initial color button as active
+            colorButtons[0].click();
+        });
+    </script>
+</body>
+</html> 
